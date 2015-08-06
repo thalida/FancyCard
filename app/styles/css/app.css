@@ -1,6 +1,3 @@
-body {
-  background-color: #fff; }
-
 .card {
   transition: 1s;
   transform-style: preserve-3d;
@@ -32,3 +29,21 @@ body {
   .card-back {
     background: gray;
     transform: rotateY(-180deg); }
+
+body {
+  background-color: #fff; }
+
+.card-container {
+  position: relative;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%); }
+
+.app {
+  position: relative;
+  height: 100vh;
+  width: 100vw; }
+
+.card-container {
+  margin: 0 auto; }
