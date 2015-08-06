@@ -16,8 +16,8 @@ body {
 	&-container {
 		@extend %vertical-align;
 		margin: 0 auto;
-		-webkit-animation: breathing cubic-bezier(0.215, 0.610, 0.355, 1.000) 5s infinite;
-		animation: breathing cubic-bezier(0.215, 0.610, 0.355, 1.000) 5s infinite;
+		-webkit-animation: breathing cubic-bezier(0.215, 0.610, 0.355, 1.000) 12s infinite;
+		animation: breathing cubic-bezier(0.215, 0.610, 0.355, 1.000) 12s infinite;
 		&.stopAnimation {
 			@extend %pause-animation;
 		}
@@ -26,15 +26,15 @@ body {
 	&-container,
 	&-front,
 	&-back {
-		height: 500px;
-		width: 340px;
+		height: 480px;
+		width: 320px;
 		border-radius: 6px;
 	}
 
 	&-front,
 	&-back {
-		-webkit-animation: breathing-shadow cubic-bezier(0.215, 0.610, 0.355, 1.000) 5s infinite;
-		animation: breathing-shadow cubic-bezier(0.215, 0.610, 0.355, 1.000) 5s infinite;
+		-webkit-animation: breathing-shadow cubic-bezier(0.215, 0.610, 0.355, 1.000) 12s infinite;
+		animation: breathing-shadow cubic-bezier(0.215, 0.610, 0.355, 1.000) 12s infinite;
 		.card-container.stopAnimation & {
 			@extend %pause-animation;
 		}
