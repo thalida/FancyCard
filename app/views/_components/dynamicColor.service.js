@@ -100,7 +100,7 @@ app.service('DynamicColorService', [
 
 		//==================================================================
 		//
-		//	@calcColor
+		//	@getColor
 		//		Based on the start + end colors -- get the specific color
 		// 		in that range that represents the time.
 		//
@@ -108,7 +108,7 @@ app.service('DynamicColorService', [
 		//		We need to split that distance into various intervals that represent
 		//		the current hour + mintue.
 		//------------------------------------------------------------------
-		DynamicColor.prototype.calcColor = function(){
+		DynamicColor.prototype.getColor = function(){
 			// Get the start + end colors - as well as the time used
 			var range = this.getRange();
 

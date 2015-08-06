@@ -1,17 +1,25 @@
 'use strict';
 
 app.directive('dynamicColor', [
+	'$interval',
 	'DynamicColorService',
-	function(DynamicColor){
+	function($interval, DynamicColor){
 		return {
 			restrict: 'A',
 			link: function($scope, $el) {
-				$scope.background = new DynamicColor();
-				$scope.bgColor = $scope.background.calcColor();
+				var waitTime = 2 * 60 * 1000;
+				var dynamicColor = new DynamicColor();
+				var setBackground = function(){
+					$el.css( 'background', dynamicColor.getColor() );
+				};
 
-				$el.css({
-					'background': $scope.bgColor
-				});
+				setBackground();
+				$interval(setBackground, waitTime);
+
+				// (function animloop(){
+				// 	window.requestAnimFrame(animloop);
+				// 	setBackground();
+				// })();
 			}
 		};
 	}
