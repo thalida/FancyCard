@@ -152,11 +152,15 @@ body {
   bottom: 0;
   left: 0;
   height: 60px;
-  width: 100%; }
+  width: 100%;
+  padding: 18px 0;
+  text-align: center; }
   .card-face.color-white .card-footer {
-    border-top: 1px solid rgba(255, 255, 255, 0.3); }
+    border-top: 1px solid rgba(255, 255, 255, 0.3);
+    color: rgba(255, 255, 255, 0.5); }
   .card-face.color-black .card-footer {
-    border-top: 1px solid rgba(0, 0, 0, 0.2); }
+    border-top: 1px solid rgba(0, 0, 0, 0.2);
+    color: rgba(0, 0, 0, 0.5); }
 
 .greeting {
   font: 50px/1.5 'Amatic SC', cursive;

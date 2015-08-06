@@ -4,8 +4,8 @@
 			 ng-bind-html="utils.sanitize(greetingText)">
 		</div>
 
-		<div class="card-footer">
-			{{footerText}}
+		<div class="card-footer"
+			 ng-bind-html="utils.sanitize(footerText)">
 		</div>
 	</div>
 	<div ng-if="::cardType === 'back'" ng-transclude></div>

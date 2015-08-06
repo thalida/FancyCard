@@ -4,7 +4,8 @@ app.directive('dynamicCard', [
 	'$interval',
 	'$sce',
 	'FancyTimeService',
-	function($interval, $sce, FancyTime){
+	'VisitsService',
+	function($interval, $sce, FancyTime, Visits){
 		return {
 			restrict: 'E',
 			replace: true,
@@ -46,9 +47,16 @@ app.directive('dynamicCard', [
 					return $scope.utils.getRandom(closestPeriod.sayings);
 				};
 
+				var getFooterText = function(){
+					var visitsGroup = Visits.getGroup();
+					return $scope.utils.getRandom(visitsGroup.sayings);
+				};
+
 				var updateCard = function(){
 					var currFancyTime = fancyTime.get();
+
 					$scope.greetingText = getGreetingText( currFancyTime );
+					$scope.footerText = getFooterText();
 					$scope.cardColor = currFancyTime.color.contrastColor();
 					$el.css( 'background', currFancyTime.hexColor );
 				};

@@ -1,6 +1,10 @@
 'use strict';
 
-var app = angular.module('myApp', ['ngRoute', 'ngSanitize']);
+var app = angular.module('myApp', [
+	'ngRoute',
+	'ngSanitize',
+	'ngStorage'
+]);
 
 app.config(['$routeProvider', function($routeProvider) {
 	$routeProvider.otherwise({redirectTo: '/'});

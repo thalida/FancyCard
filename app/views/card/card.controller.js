@@ -12,7 +12,10 @@ app.config([
 
 app.controller('CardCtrl', [
 	'$scope',
-	function($scope) {
+	'VisitsService',
+	function($scope, Visits) {
+		Visits.addNew();
+
 		$scope.isFrontShown = true;
 		$scope.runAnimation = true;
 
