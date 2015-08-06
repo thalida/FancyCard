@@ -2,6 +2,9 @@
 @import 'animations';
 @import 'card';
 
+html { box-sizing: border-box; }
+*, *:before, *:after { box-sizing: inherit; }
+
 body {
 	background-color: #EFEFEF;
 	font: 16px/1.5 'Martel', serif;
@@ -32,18 +35,41 @@ body {
 	}
 
 	&-face {
+		padding: 0 20px;
 		-webkit-animation: breathing-shadow cubic-bezier(0.215, 0.610, 0.355, 1.000) 12s infinite;
 		animation: breathing-shadow cubic-bezier(0.215, 0.610, 0.355, 1.000) 12s infinite;
 		.card-container.stopAnimation & {
 			@extend %pause-animation;
 		}
 	}
+
+	&-inner {
+		position: relative;
+		height: 100%;
+	}
+
+	&-footer {
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		height: 60px;
+		width: 100%;
+
+		.card-face.color-white & {
+			border-top: 1px solid rgba(white, 0.3);
+		}
+
+		.card-face.color-black & {
+			border-top: 1px solid rgba(black, 0.2);
+		}
+	}
 }
 
 .greeting {
-	@extend %vertical-align;
+	// @extend %vertical-align;
 	font: 50px/1.5 'Amatic SC', cursive;
 	text-align: center;
+	padding-top: 60%;
 
 	.card-face.color-white & {
 		color: rgba(#fff, 1);

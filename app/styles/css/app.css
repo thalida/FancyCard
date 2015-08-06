@@ -1,4 +1,4 @@
-.card-container, .greeting {
+.card-container {
   position: relative;
   top: 50%;
   -webkit-transform: translateY(-50%);
@@ -9,7 +9,7 @@
   -webkit-animation-play-state: paused;
   animation-play-state: paused; }
 
-.card-container, .greeting {
+.card-container {
   position: relative;
   top: 50%;
   -webkit-transform: translateY(-50%);
@@ -59,30 +59,30 @@
 @-webkit-keyframes breathing-shadow {
   0%,
   100% {
-    box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3); }
+    box-shadow: 2px 2px 0px rgba(0, 0, 0, 0.1); }
   50% {
-    box-shadow: 12px 12px 12px rgba(0, 0, 0, 0.1); } }
+    box-shadow: 12px 12px 3px rgba(0, 0, 0, 0.05); } }
 
 @-moz-keyframes breathing-shadow {
   0%,
   100% {
-    box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3); }
+    box-shadow: 2px 2px 0px rgba(0, 0, 0, 0.1); }
   50% {
-    box-shadow: 12px 12px 12px rgba(0, 0, 0, 0.1); } }
+    box-shadow: 12px 12px 3px rgba(0, 0, 0, 0.05); } }
 
 @-ms-keyframes breathing-shadow {
   0%,
   100% {
-    box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3); }
+    box-shadow: 2px 2px 0px rgba(0, 0, 0, 0.1); }
   50% {
-    box-shadow: 12px 12px 12px rgba(0, 0, 0, 0.1); } }
+    box-shadow: 12px 12px 3px rgba(0, 0, 0, 0.05); } }
 
 @keyframes breathing-shadow {
   0%,
   100% {
-    box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3); }
+    box-shadow: 2px 2px 0px rgba(0, 0, 0, 0.1); }
   50% {
-    box-shadow: 12px 12px 12px rgba(0, 0, 0, 0.1); } }
+    box-shadow: 12px 12px 3px rgba(0, 0, 0, 0.05); } }
 
 .card {
   transition: 1s;
@@ -95,9 +95,6 @@
   .card-face {
     width: 320px;
     height: 480px; }
-  .card-inner {
-    position: relative;
-    height: 100%; }
   .card-face {
     backface-visibility: hidden;
     transition: 1s;
@@ -114,6 +111,12 @@
     transform: rotateY(-180deg); }
     .card-container.showBack .card-back {
       transform: rotateY(0deg); }
+
+html {
+  box-sizing: border-box; }
+
+*, *:before, *:after {
+  box-sizing: inherit; }
 
 body {
   background-color: #EFEFEF;
@@ -136,12 +139,29 @@ body {
   animation: breathing cubic-bezier(0.215, 0.61, 0.355, 1) 12s infinite; }
 
 .card-face {
+  padding: 0 20px;
   -webkit-animation: breathing-shadow cubic-bezier(0.215, 0.61, 0.355, 1) 12s infinite;
   animation: breathing-shadow cubic-bezier(0.215, 0.61, 0.355, 1) 12s infinite; }
 
+.card-inner {
+  position: relative;
+  height: 100%; }
+
+.card-footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 60px;
+  width: 100%; }
+  .card-face.color-white .card-footer {
+    border-top: 1px solid rgba(255, 255, 255, 0.3); }
+  .card-face.color-black .card-footer {
+    border-top: 1px solid rgba(0, 0, 0, 0.2); }
+
 .greeting {
   font: 50px/1.5 'Amatic SC', cursive;
-  text-align: center; }
+  text-align: center;
+  padding-top: 60%; }
   .card-face.color-white .greeting {
     color: white; }
   .card-face.color-black .greeting {

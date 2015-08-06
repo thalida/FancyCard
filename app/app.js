@@ -8,9 +8,10 @@ app.config(['$routeProvider', function($routeProvider) {
 
 app.run([function(){
 	// method taken from https://gist.github.com/960189
+	// 160.5
 	jQuery.Color.fn.contrastColor = function() {
 	    var r = this._rgba[0], g = this._rgba[1], b = this._rgba[2];
-	    return (((r*299)+(g*587)+(b*144))/1000) >= 160.5 ? 'black' : 'white';
+	    return (((r*299)+(g*587)+(b*144))/1000) >= 180.5 ? 'black' : 'white';
 	};
 	// jQuery.Color.fn.contrastColor = function() {
 	//     var r = this._rgba[0], g = this._rgba[1], b = this._rgba[2];

@@ -16,11 +16,6 @@
 		height: 480px;
 	}
 
-	&-inner {
-		position: relative;
-		height: 100%;
-	}
-
 	&-face {
 		backface-visibility: hidden;
 		transition: $flipSpeed;

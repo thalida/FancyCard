@@ -9,9 +9,6 @@
   .card-face {
     width: 320px;
     height: 480px; }
-  .card-inner {
-    position: relative;
-    height: 100%; }
   .card-face {
     backface-visibility: hidden;
     transition: 1s;

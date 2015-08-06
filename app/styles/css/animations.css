@@ -37,27 +37,27 @@
 @-webkit-keyframes breathing-shadow {
   0%,
   100% {
-    box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3); }
+    box-shadow: 2px 2px 0px rgba(0, 0, 0, 0.1); }
   50% {
-    box-shadow: 12px 12px 12px rgba(0, 0, 0, 0.1); } }
+    box-shadow: 12px 12px 3px rgba(0, 0, 0, 0.05); } }
 
 @-moz-keyframes breathing-shadow {
   0%,
   100% {
-    box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3); }
+    box-shadow: 2px 2px 0px rgba(0, 0, 0, 0.1); }
   50% {
-    box-shadow: 12px 12px 12px rgba(0, 0, 0, 0.1); } }
+    box-shadow: 12px 12px 3px rgba(0, 0, 0, 0.05); } }
 
 @-ms-keyframes breathing-shadow {
   0%,
   100% {
-    box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3); }
+    box-shadow: 2px 2px 0px rgba(0, 0, 0, 0.1); }
   50% {
-    box-shadow: 12px 12px 12px rgba(0, 0, 0, 0.1); } }
+    box-shadow: 12px 12px 3px rgba(0, 0, 0, 0.05); } }
 
 @keyframes breathing-shadow {
   0%,
   100% {
-    box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3); }
+    box-shadow: 2px 2px 0px rgba(0, 0, 0, 0.1); }
   50% {
-    box-shadow: 12px 12px 12px rgba(0, 0, 0, 0.1); } }
+    box-shadow: 12px 12px 3px rgba(0, 0, 0, 0.05); } }
