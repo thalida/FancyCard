@@ -1,0 +1,49 @@
+.card {
+	$flipSpeed: 1s;
+
+	transition: $flipSpeed;
+	transform-style: preserve-3d;
+	position: relative;
+
+	&-container {
+		perspective: 1000;
+		transform-style: preserve-3d;
+
+		&.flip .card-back {
+			transform: rotateY(0deg);
+		}
+
+		&.flip .card-front {
+	    	transform: rotateY(180deg);
+		}
+	}
+
+	&-container,
+	&-front,
+	&-back {
+		width: 320px;
+		height: 480px;
+	}
+
+	&-front,
+	&-back {
+		backface-visibility: hidden;
+		transition: $flipSpeed;
+		transform-style: preserve-3d;
+
+		position: absolute;
+		top: 0;
+		left: 0;
+	}
+
+	&-front {
+		background: blue;
+		z-index: 2;
+		transform: rotateY(0deg);
+	}
+
+	&-back {
+		background: gray;
+		transform: rotateY(-180deg);
+	}
+}
