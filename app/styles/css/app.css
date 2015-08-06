@@ -109,11 +109,11 @@
   .card-front {
     z-index: 2;
     transform: rotateY(0deg); }
-    .card-container.flip .card-front {
+    .card-container.showBack .card-front {
       transform: rotateY(180deg); }
   .card-back {
     transform: rotateY(-180deg); }
-    .card-container.flip .card-back {
+    .card-container.showBack .card-back {
       transform: rotateY(0deg); }
 
 body {

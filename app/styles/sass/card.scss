@@ -32,7 +32,7 @@
 		z-index: 2;
 		transform: rotateY(0deg);
 
-		.card-container.flip & {
+		.card-container.showBack & {
 			transform: rotateY(180deg);
 		}
 	}
@@ -40,7 +40,7 @@
 	&-back {
 		transform: rotateY(-180deg);
 
-		.card-container.flip & {
+		.card-container.showBack & {
 			transform: rotateY(0deg);
 		}
 	}
