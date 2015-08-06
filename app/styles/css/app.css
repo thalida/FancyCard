@@ -117,17 +117,13 @@
       transform: rotateY(0deg); }
 
 body {
-  background-color: #EFEFEF; }
+  background-color: #EFEFEF;
+  font: 16px/1.5 'Martel', serif; }
 
 .app {
   position: relative;
   height: 100vh;
   width: 100vw; }
-
-.card-container {
-  margin: 0 auto;
-  -webkit-animation: breathing cubic-bezier(0.215, 0.61, 0.355, 1) 12s infinite;
-  animation: breathing cubic-bezier(0.215, 0.61, 0.355, 1) 12s infinite; }
 
 .card-container,
 .card-front,
@@ -136,13 +132,12 @@ body {
   width: 320px;
   border-radius: 6px; }
 
+.card-container {
+  margin: 0 auto;
+  -webkit-animation: breathing cubic-bezier(0.215, 0.61, 0.355, 1) 12s infinite;
+  animation: breathing cubic-bezier(0.215, 0.61, 0.355, 1) 12s infinite; }
+
 .card-front,
 .card-back {
   -webkit-animation: breathing-shadow cubic-bezier(0.215, 0.61, 0.355, 1) 12s infinite;
   animation: breathing-shadow cubic-bezier(0.215, 0.61, 0.355, 1) 12s infinite; }
-
-.card-front {
-  background-color: #323C64; }
-
-.card-back {
-  background-color: #F9F9F9; }

@@ -4,6 +4,8 @@
 
 body {
 	background-color: #EFEFEF;
+	font: 16px/1.5 'Martel', serif;
+	// font-family: 'Amatic SC', cursive;
 }
 
 .app {
@@ -13,6 +15,14 @@ body {
 }
 
 .card {
+	&-container,
+	&-front,
+	&-back {
+		height: 480px;
+		width: 320px;
+		border-radius: 6px;
+	}
+
 	&-container {
 		@extend %vertical-align;
 		margin: 0 auto;
@@ -23,14 +33,6 @@ body {
 		}
 	}
 
-	&-container,
-	&-front,
-	&-back {
-		height: 480px;
-		width: 320px;
-		border-radius: 6px;
-	}
-
 	&-front,
 	&-back {
 		-webkit-animation: breathing-shadow cubic-bezier(0.215, 0.610, 0.355, 1.000) 12s infinite;
@@ -38,13 +40,5 @@ body {
 		.card-container.stopAnimation & {
 			@extend %pause-animation;
 		}
-	}
-
-	&-front {
-		background-color: #323C64;
-	}
-
-	&-back {
-		background-color: #F9F9F9;
 	}
 }

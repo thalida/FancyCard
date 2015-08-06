@@ -1,0 +1,11 @@
+<div class="{{cardClass}}">
+	<div ng-if="::cardType === 'front'">
+		<div class="greeting">
+			{{greetingText}}
+		</div>
+		<div class="card-footer">
+			{{footerText}}
+		</div>
+	</div>
+	<div ng-if="::cardType === 'back'" ng-transclude></div>
+</div>
