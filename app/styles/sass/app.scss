@@ -38,11 +38,6 @@ body {
 			@extend %pause-animation;
 		}
 	}
-
-	&-inner {
-		position: relative;
-		height: 100%;
-	}
 }
 
 .greeting {

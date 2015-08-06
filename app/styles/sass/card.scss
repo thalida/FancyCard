@@ -11,14 +11,17 @@
 	}
 
 	&-container,
-	&-front,
-	&-back {
+	&-face {
 		width: 320px;
 		height: 480px;
 	}
 
-	&-front,
-	&-back {
+	&-inner {
+		position: relative;
+		height: 100%;
+	}
+
+	&-face {
 		backface-visibility: hidden;
 		transition: $flipSpeed;
 		transform-style: preserve-3d;

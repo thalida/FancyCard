@@ -92,12 +92,13 @@
     perspective: 1000;
     transform-style: preserve-3d; }
   .card-container,
-  .card-front,
-  .card-back {
+  .card-face {
     width: 320px;
     height: 480px; }
-  .card-front,
-  .card-back {
+  .card-inner {
+    position: relative;
+    height: 100%; }
+  .card-face {
     backface-visibility: hidden;
     transition: 1s;
     transform-style: preserve-3d;
@@ -137,10 +138,6 @@ body {
 .card-face {
   -webkit-animation: breathing-shadow cubic-bezier(0.215, 0.61, 0.355, 1) 12s infinite;
   animation: breathing-shadow cubic-bezier(0.215, 0.61, 0.355, 1) 12s infinite; }
-
-.card-inner {
-  position: relative;
-  height: 100%; }
 
 .greeting {
   font: 50px/1.5 'Amatic SC', cursive;
