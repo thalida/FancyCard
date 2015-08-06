@@ -11,6 +11,8 @@
     "angular-loader": "~1.4.0",
     "angular-mocks": "~1.4.0",
     "html5-boilerplate": "~5.2.0",
-    "moment": "~2.10.6"
+    "moment": "~2.10.6",
+    "jquery-color": "jquery/jquery-color#~2.1.2",
+    "jquery": "~2.1.4"
   }
 }
