@@ -1,8 +1,13 @@
 <div class="card-container"
      ng-class="{
-     	'flip': flipCard == true
+     	'flip': flipCard == true,
+     	'stopAnimation': runAnimation == false,
+     	'light': isLightText == true,
+     	'dark': isLightText == false
      }"
-     ng-click="toggleFlip($event)">
+     ng-click="toggleFlip()"
+     ng-mouseenter="stopAnimation()"
+     ng-mouseleave="startAnimation()">
 	<div class="card">
 		<ng:include src="'views/card/front.html'"></ng:include>
 		<ng:include src="'views/card/back.html'"></ng:include>

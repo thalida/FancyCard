@@ -5,10 +5,6 @@
   .card-container {
     perspective: 1000;
     transform-style: preserve-3d; }
-    .card-container.flip .card-back {
-      transform: rotateY(0deg); }
-    .card-container.flip .card-front {
-      transform: rotateY(180deg); }
   .card-container,
   .card-front,
   .card-back {
@@ -23,9 +19,11 @@
     top: 0;
     left: 0; }
   .card-front {
-    background: blue;
     z-index: 2;
     transform: rotateY(0deg); }
+    .card-container.flip .card-front {
+      transform: rotateY(180deg); }
   .card-back {
-    background: gray;
     transform: rotateY(-180deg); }
+    .card-container.flip .card-back {
+      transform: rotateY(0deg); }

@@ -14,8 +14,19 @@ app.controller('CardCtrl', [
 	'$scope',
 	function($scope) {
 		$scope.flipCard = false;
-		$scope.toggleFlip = function( e ){
+		$scope.runAnimation = true;
+
+		$scope.toggleFlip = function(){
 			$scope.flipCard = !$scope.flipCard;
+			$scope.stopAnimation();
+		};
+
+		$scope.stopAnimation = function(){
+			$scope.runAnimation = false;
+		};
+
+		$scope.startAnimation = function(){
+			$scope.runAnimation = true;
 		};
 	}
 ]);

@@ -1,15 +1,9 @@
+@import 'mixins';
+@import 'animations';
 @import 'card';
 
 body {
-	background-color: #fff;
-}
-
-%vertical-align {
-  position: relative;
-  top: 50%;
-  -webkit-transform: translateY(-50%);
-  -ms-transform: translateY(-50%);
-  transform: translateY(-50%);
+	background-color: #EFEFEF;
 }
 
 .app {
@@ -22,5 +16,35 @@ body {
 	&-container {
 		@extend %vertical-align;
 		margin: 0 auto;
+		-webkit-animation: breathing cubic-bezier(0.215, 0.610, 0.355, 1.000) 5s infinite;
+		animation: breathing cubic-bezier(0.215, 0.610, 0.355, 1.000) 5s infinite;
+		&.stopAnimation {
+			@extend %pause-animation;
+		}
+	}
+
+	&-container,
+	&-front,
+	&-back {
+		height: 500px;
+		width: 340px;
+		border-radius: 6px;
+	}
+
+	&-front,
+	&-back {
+		-webkit-animation: breathing-shadow cubic-bezier(0.215, 0.610, 0.355, 1.000) 5s infinite;
+		animation: breathing-shadow cubic-bezier(0.215, 0.610, 0.355, 1.000) 5s infinite;
+		.card-container.stopAnimation & {
+			@extend %pause-animation;
+		}
+	}
+
+	&-front {
+		background-color: #323C64;
+	}
+
+	&-back {
+		background-color: #F9F9F9;
 	}
 }

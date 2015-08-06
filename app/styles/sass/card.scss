@@ -8,14 +8,6 @@
 	&-container {
 		perspective: 1000;
 		transform-style: preserve-3d;
-
-		&.flip .card-back {
-			transform: rotateY(0deg);
-		}
-
-		&.flip .card-front {
-	    	transform: rotateY(180deg);
-		}
 	}
 
 	&-container,
@@ -37,13 +29,19 @@
 	}
 
 	&-front {
-		background: blue;
 		z-index: 2;
 		transform: rotateY(0deg);
+
+		.card-container.flip & {
+	    	transform: rotateY(180deg);
+		}
 	}
 
 	&-back {
-		background: gray;
 		transform: rotateY(-180deg);
+
+		.card-container.flip & {
+			transform: rotateY(0deg);
+		}
 	}
 }
