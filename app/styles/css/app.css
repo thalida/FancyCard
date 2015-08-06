@@ -1,24 +1,22 @@
-.card-container {
+.card-container, .greeting {
   position: relative;
   top: 50%;
   -webkit-transform: translateY(-50%);
   -ms-transform: translateY(-50%);
   transform: translateY(-50%); }
 
-.card-container.stopAnimation, .card-container.stopAnimation .card-front,
-.card-container.stopAnimation .card-back {
+.card-container.stopAnimation, .card-container.stopAnimation .card-face {
   -webkit-animation-play-state: paused;
   animation-play-state: paused; }
 
-.card-container {
+.card-container, .greeting {
   position: relative;
   top: 50%;
   -webkit-transform: translateY(-50%);
   -ms-transform: translateY(-50%);
   transform: translateY(-50%); }
 
-.card-container.stopAnimation, .card-container.stopAnimation .card-front,
-.card-container.stopAnimation .card-back {
+.card-container.stopAnimation, .card-container.stopAnimation .card-face {
   -webkit-animation-play-state: paused;
   animation-play-state: paused; }
 
@@ -126,8 +124,7 @@ body {
   width: 100vw; }
 
 .card-container,
-.card-front,
-.card-back {
+.card-face {
   height: 480px;
   width: 320px;
   border-radius: 6px; }
@@ -137,7 +134,18 @@ body {
   -webkit-animation: breathing cubic-bezier(0.215, 0.61, 0.355, 1) 12s infinite;
   animation: breathing cubic-bezier(0.215, 0.61, 0.355, 1) 12s infinite; }
 
-.card-front,
-.card-back {
+.card-face {
   -webkit-animation: breathing-shadow cubic-bezier(0.215, 0.61, 0.355, 1) 12s infinite;
   animation: breathing-shadow cubic-bezier(0.215, 0.61, 0.355, 1) 12s infinite; }
+
+.card-inner {
+  position: relative;
+  height: 100%; }
+
+.greeting {
+  font: 50px/1.5 'Amatic SC', cursive;
+  text-align: center; }
+  .card-face.color-white .greeting {
+    color: white; }
+  .card-face.color-black .greeting {
+    color: black; }

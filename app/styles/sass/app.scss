@@ -5,7 +5,6 @@
 body {
 	background-color: #EFEFEF;
 	font: 16px/1.5 'Martel', serif;
-	// font-family: 'Amatic SC', cursive;
 }
 
 .app {
@@ -16,8 +15,7 @@ body {
 
 .card {
 	&-container,
-	&-front,
-	&-back {
+	&-face {
 		height: 480px;
 		width: 320px;
 		border-radius: 6px;
@@ -33,12 +31,30 @@ body {
 		}
 	}
 
-	&-front,
-	&-back {
+	&-face {
 		-webkit-animation: breathing-shadow cubic-bezier(0.215, 0.610, 0.355, 1.000) 12s infinite;
 		animation: breathing-shadow cubic-bezier(0.215, 0.610, 0.355, 1.000) 12s infinite;
 		.card-container.stopAnimation & {
 			@extend %pause-animation;
 		}
+	}
+
+	&-inner {
+		position: relative;
+		height: 100%;
+	}
+}
+
+.greeting {
+	@extend %vertical-align;
+	font: 50px/1.5 'Amatic SC', cursive;
+	text-align: center;
+
+	.card-face.color-white & {
+		color: rgba(#fff, 1);
+	}
+
+	.card-face.color-black & {
+		color: rgba(#000, 1);
 	}
 }

@@ -18,9 +18,8 @@ app.service('timePeriods', [
 				beginAt: 4,
 				color: '#97FFDF',
 				sayings: [
-					'Woah, Nightowl!',
-					'Up Late?',
-					'Can&rsquo;t sleep?'
+					'OMG, the elusive EarlyBird!',
+					'Hi, Early Riser!'
 				]
 			},
 			{
@@ -28,9 +27,8 @@ app.service('timePeriods', [
 				beginAt: 8,
 				color: '#56D8FF',
 				sayings: [
-					'Woah, Nightowl!',
-					'Up Late?',
-					'Can&rsquo;t sleep?'
+					'Good Morning!',
+					'Good Dreams?'
 				]
 			},
 			{
@@ -38,9 +36,8 @@ app.service('timePeriods', [
 				beginAt: 12,
 				color: '#FFD874',
 				sayings: [
-					'Woah, Nightowl!',
-					'Up Late?',
-					'Can&rsquo;t sleep?'
+					'Good Afternoon!',
+					'Food O&lsquo;Clock'
 				]
 			},
 			{
@@ -48,9 +45,9 @@ app.service('timePeriods', [
 				beginAt: 15,
 				color: '#FFB774',
 				sayings: [
-					'Woah, Nightowl!',
-					'Up Late?',
-					'Can&rsquo;t sleep?'
+					'Oh, Hi!',
+					'How are you?',
+					'Oh, Hey you!'
 				]
 			},
 			{
@@ -58,9 +55,8 @@ app.service('timePeriods', [
 				beginAt: 18,
 				color: '#FF8774',
 				sayings: [
-					'Woah, Nightowl!',
-					'Up Late?',
-					'Can&rsquo;t sleep?'
+					'Good Evening!',
+					'Good day?'
 				]
 			},
 			{
@@ -68,9 +64,8 @@ app.service('timePeriods', [
 				beginAt: 21,
 				color: '#284BD7',
 				sayings: [
-					'Woah, Nightowl!',
-					'Up Late?',
-					'Can&rsquo;t sleep?'
+					'Good Night!',
+					'Plans Tonight?'
 				]
 			}
 		];

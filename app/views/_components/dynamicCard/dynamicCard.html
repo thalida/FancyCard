@@ -1,8 +1,9 @@
-<div class="{{cardClass}}">
-	<div ng-if="::cardType === 'front'">
-		<div class="greeting">
-			{{greetingText}}
+<div class="card-face {{cardClass}} color-{{cardColor}}">
+	<div ng-if="::cardType === 'front'" class="card-inner">
+		<div class="greeting"
+			 ng-bind-html="utils.sanitize(greetingText)">
 		</div>
+
 		<div class="card-footer">
 			{{footerText}}
 		</div>
