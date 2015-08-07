@@ -21,9 +21,9 @@ app.controller('CardCtrl', [
 		$scope.isFrontShown = true;
 		$scope.runAnimation = true;
 		$scope.photo = Utils.getRandom([
-			'images/me_yellow.jpg',
-			'images/me_door.jpg',
-			'images/me_hat.jpg'
+			'assets/images/me_yellow.jpg',
+			'assets/images/me_door.jpg',
+			'assets/images/me_hat.jpg'
 		]);
 
 		$scope.flipCard = function(){

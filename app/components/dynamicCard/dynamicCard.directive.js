@@ -10,7 +10,7 @@ app.directive('dynamicCard', [
 		return {
 			restrict: 'E',
 			replace: true,
-			templateUrl: 'views/_components/dynamicCard/dynamicCard.html',
+			templateUrl: 'components/dynamicCard/dynamicCard.html',
 			transclude: true,
 			scope: {
 				cardType: '@type',
