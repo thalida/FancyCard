@@ -43,17 +43,18 @@ $animationSpeed: 4s;
 
 	&-front {
 		.card-footer {
-			background-image: url(../images/arrow-right.svg);
 			background-repeat: no-repeat;
 			background-position: center right;
 		}
 
 		&.color-white .card-footer{
+			background-image: url(../images/arrow-right-white.svg);
 			border-top: 1px solid rgba(white, 0.3);
 			color: rgba(white, 0.5);
 		}
 
 		&.color-black .card-footer {
+			background-image: url(../images/arrow-right-black.svg);
 			border-top: 1px solid rgba(black, 0.2);
 			color: rgba(black, 0.5);
 		}
