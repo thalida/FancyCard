@@ -14,7 +14,8 @@ app.controller('CardCtrl', [
 	'$scope',
 	'Utils',
 	'VisitsService',
-	function($scope, Utils, Visits) {
+	'skillsDict',
+	function($scope, Utils, Visits, skillsDict) {
 		Visits.increment();
 
 		$scope.utils = Utils;
@@ -26,38 +27,7 @@ app.controller('CardCtrl', [
 			'assets/images/me_door.jpg',
 			'assets/images/me_hat.jpg'
 		]);
-		$scope.skills = [
-			{
-				weight: 'strong',
-				type: 'framework',
-				label: 'AngularJS'
-			},
-			{
-				weight: 'strong',
-				type: 'preprocessor',
-				label: 'CoffeScript'
-			},
-			{
-				weight: 'medium',
-				type: 'builder',
-				label: 'Grunt'
-			},
-			{
-				weight: 'light',
-				type: 'builder',
-				label: 'Gulp'
-			},
-			{
-				weight: 'light',
-				type: 'framework',
-				label: 'Backbone'
-			},
-			{
-				weight: 'light',
-				type: 'framework',
-				label: 'React'
-			}
-		];
+		$scope.skills = skillsDict.get();
 
 		$scope.flipCard = function(){
 			$scope.isFrontShown = !$scope.isFrontShown;
@@ -92,9 +62,7 @@ app.controller('CardCtrl', [
 				newAlpha = 0.2;
 			}
 
-			tagColor = 'rgba(' +  rgb + newAlpha + ')';
-
-			return tagColor;
+			return 'rgba(' +  rgb + newAlpha + ')';
 		};
 
 		$scope.updateText = function(){
