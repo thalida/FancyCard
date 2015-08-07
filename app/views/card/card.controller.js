@@ -35,7 +35,7 @@ app.controller('CardCtrl', [
 			$scope.hasClicked = true;
 			$scope.isFrontShown = !$scope.isFrontShown;
 
-			if( $scope.isFrontShown === false ){
+			if( $scope.isFrontShown === true ){
 				$scope.setAnimation( true );
 			} else {
 				$scope.setAnimation( false );
