@@ -36,11 +36,11 @@
 				<div class="tags">
 					<span class="tag"
 						  ng-style="{
-						  	'border-color': '{{getTagColor(skill)}}'
+						  	'border-color': '{{::getTagColor(skill)}}'
 						  }"
 						  ng-class="'weight-' + skill.weight"
-						  ng-repeat="(key, skill) in skills">
-						  {{skill.label}}
+						  ng-repeat="(key, skill) in ::skills">
+						  {{::skill.label}}
 					</span>
 				</div>
 			</div>

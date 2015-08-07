@@ -5,8 +5,7 @@ app.directive('dynamicCard', [
 	'$sce',
 	'Utils',
 	'FancyTimeService',
-	'VisitsService',
-	function($interval, $sce, Utils, FancyTime, Visits){
+	function($interval, $sce, Utils, FancyTime){
 		return {
 			restrict: 'E',
 			replace: true,
