@@ -1,17 +1,1 @@
-<div class="card-face {{cardClass}} color-{{cardColor}}">
-	<div ng-if="::cardType === 'front'"
-		 class="card-inner">
-		<div class="greeting"
-			 ng-bind-html="utils.sanitize(greetingText)">
-		</div>
-
-		<div class="card-footer"
-			 ng-bind-html="utils.sanitize(footerText)">
-		</div>
-	</div>
-
-	<div ng-if="::cardType === 'back'"
-		 class="card-inner"
-		 ng-transclude>
-	</div>
-</div>
+<div class="card-face {{cardClass}} color-{{cardColor}}" ng-transclude></div>

@@ -8,32 +8,42 @@
      ng-mouseleave="playAnimation()">
 
 	<div class="card">
-		<dynamic:card type="front"></dynamic:card>
-
-		<dynamic:card type="back" fancy-time="fancyTime">
-			<div class="photo">
-				<span class="img"
-					  ng-style="{'background-image': 'url({{photo}})'}">
-				</span>
+		<dynamic:card face="front" fancy-time="fancyTime">
+			<div class="card-content">
+				<div class="greeting"
+					 ng-bind-html="utils.sanitize(greetingText)">
+				</div>
 			</div>
-
-			<div class="about">
-				<span class="name">Thalida Noel</span>
-				<span class="title">Mobile Web Developer</span>
-				<span class="title">OkCupid</span>
+			<div class="card-footer"
+				 ng-bind-html="utils.sanitize(footerText)">
 			</div>
+		</dynamic:card>
 
-			<div class="tags">
-				<span class="tag"
-					  ng-style="{
-					  	'border-color': '{{getTagColor(skill)}}'
-					  }"
-					  ng-class="'weight-' + skill.weight"
-					  ng-repeat="(key, skill) in skills">
-					  {{skill.label}}
-				</span>
+		<dynamic:card face="back">
+			<div class="card-content">
+				<div class="photo">
+					<span class="img"
+						  ng-style="{'background-image': 'url({{photo}})'}">
+					</span>
+				</div>
+
+				<div class="about">
+					<span class="name">Thalida Noel</span>
+					<span class="title">Mobile Web Developer</span>
+					<span class="title">OkCupid</span>
+				</div>
+
+				<div class="tags">
+					<span class="tag"
+						  ng-style="{
+						  	'border-color': '{{getTagColor(skill)}}'
+						  }"
+						  ng-class="'weight-' + skill.weight"
+						  ng-repeat="(key, skill) in skills">
+						  {{skill.label}}
+					</span>
+				</div>
 			</div>
-
 			<div class="card-footer">
 				social links
 			</div>

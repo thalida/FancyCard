@@ -17,6 +17,7 @@ app.controller('CardCtrl', [
 	function($scope, Utils, Visits) {
 		Visits.increment();
 
+		$scope.utils = Utils;
 		$scope.fancyTime = null;
 		$scope.isFrontShown = true;
 		$scope.runAnimation = true;
@@ -95,5 +96,23 @@ app.controller('CardCtrl', [
 
 			return tagColor;
 		};
+
+		$scope.updateText = function(){
+			// Get which group the visitor is in
+			var visitsGroup = Visits.getGroup();
+
+			// Update the greeting text w/ a random saying
+			$scope.greetingText = $scope.utils.getRandom($scope.fancyTime.closestPeriod.sayings);
+
+			// Update the footer text w/ a ranom saing based on # of visits
+			$scope.footerText = $scope.utils.getRandom(visitsGroup.sayings);
+
+		};
+
+		$scope.$watch('fancyTime', function(fancyTime){
+			if( fancyTime !== null ){
+				$scope.updateText();
+			}
+		});
 	}
 ]);

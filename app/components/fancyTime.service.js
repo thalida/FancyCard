@@ -117,8 +117,6 @@ app.service('FancyTimeService', [
 			// Get the time in the range that the current time is closest to
 			closestPeriod = (timeSinceRangeBegin < numHrsInRange / 2) ? range.groups[0] : range.groups[1];
 
-			console.log( numHrsInRange, range.time.minute, timeSinceRangeBegin, interval, distance );
-
 			return {
 				range: range.groups,
 				closestPeriod: closestPeriod,

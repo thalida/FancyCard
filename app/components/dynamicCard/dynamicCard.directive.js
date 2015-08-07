@@ -13,7 +13,7 @@ app.directive('dynamicCard', [
 			templateUrl: 'components/dynamicCard/dynamicCard.html',
 			transclude: true,
 			scope: {
-				cardType: '@type',
+				cardFace: '@face',
 				currFancyTime: '=?fancyTime'
 			},
 			link: function($scope, $el) {
@@ -26,8 +26,8 @@ app.directive('dynamicCard', [
 					// Wait time between each card update
 					var waitTime = 2 * 60 * 1000;
 
-					$scope.cardType = $scope.cardType || 'front';
-					$scope.cardClass = 'card-' + $scope.cardType;
+					$scope.cardFace = $scope.cardFace || 'front';
+					$scope.cardClass = 'card-' + $scope.cardFace;
 
 					updateCard();
 					$interval(updateCard, waitTime);
@@ -41,25 +41,14 @@ app.directive('dynamicCard', [
 					// Get the info for the current time (color, sayings, name, etc)
 					var currFancyTime = FancyTime.get();
 
-					// Get which group the visitor is in
-					var visitsGroup = Visits.getGroup();
-
 					// Pass the current fancy time to the parent controller
 					$scope.currFancyTime = currFancyTime;
-
-					// Update the greeting text w/ a random saying
-					$scope.greetingText = $scope.utils.getRandom(currFancyTime.closestPeriod.sayings);
-
-					// Update the footer text w/ a ranom saing based on # of visits
-					$scope.footerText = $scope.utils.getRandom(visitsGroup.sayings);
 
 					// Update the contrast card color (either white/black)
 					$scope.cardColor = currFancyTime.color.contrastColor();
 
 					// Set the background to the hex color for this time
 					$el.css( 'background', currFancyTime.hexColor );
-
-					console.log( currFancyTime.color.toRgbaString() );
 				};
 
 				init();
