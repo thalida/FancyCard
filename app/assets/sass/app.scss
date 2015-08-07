@@ -49,6 +49,12 @@ body {
 	&-front {
 		padding: 0 20px;
 
+		.card-footer {
+			background-image: url(../images/arrow-right.svg);
+			background-repeat: no-repeat;
+			background-position: center right;
+		}
+
 		&.color-white .card-footer{
 			border-top: 1px solid rgba(white, 0.3);
 			color: rgba(white, 0.5);

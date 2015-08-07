@@ -144,6 +144,10 @@ body {
 
 .card-front {
   padding: 0 20px; }
+  .card-front .card-footer {
+    background-image: url(../images/arrow-right.svg);
+    background-repeat: no-repeat;
+    background-position: center right; }
   .card-front.color-white .card-footer {
     border-top: 1px solid rgba(255, 255, 255, 0.3);
     color: rgba(255, 255, 255, 0.5); }

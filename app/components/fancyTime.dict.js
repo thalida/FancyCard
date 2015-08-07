@@ -16,7 +16,8 @@ app.service('fancyTimeDict', [
 			{
 				name: 'earlybird',
 				beginAt: 4,
-				color: '#97FFDF',
+				color: '#8B98CE',
+				// color: '#97FFDF',
 				sayings: [
 					'OMG, the elusive EarlyBird!',
 					'Hi, Early Riser!'
