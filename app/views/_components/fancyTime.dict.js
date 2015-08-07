@@ -1,6 +1,6 @@
 'use strict';
 
-app.service('timePeriods', [
+app.service('fancyTimeDict', [
 	function(){
 		var timePeriods = [
 			{

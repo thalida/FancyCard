@@ -2,12 +2,16 @@
 @import 'animations';
 @import 'card';
 
+$photoSize: 90px;
+$cardRadius: 6px;
+
+
 html { box-sizing: border-box; }
 *, *:before, *:after { box-sizing: inherit; }
 
 body {
 	background-color: #EFEFEF;
-	font: 16px/1.5 'Martel', serif;
+	font: normal 300 16px/1.5 'Roboto Slab', serif;
 }
 
 .app {
@@ -21,7 +25,7 @@ body {
 	&-face {
 		height: 480px;
 		width: 320px;
-		border-radius: 6px;
+		border-radius: $cardRadius;
 	}
 
 	&-container {
@@ -35,11 +39,38 @@ body {
 	}
 
 	&-face {
-		padding: 0 20px;
 		-webkit-animation: breathing-shadow cubic-bezier(0.215, 0.610, 0.355, 1.000) 12s infinite;
 		animation: breathing-shadow cubic-bezier(0.215, 0.610, 0.355, 1.000) 12s infinite;
 		.card-container.stopAnimation & {
 			@extend %pause-animation;
+		}
+	}
+
+	&-front {
+		padding: 0 20px;
+
+		&.color-white .card-footer{
+			border-top: 1px solid rgba(white, 0.3);
+			color: rgba(white, 0.5);
+		}
+
+		&.color-black .card-footer {
+			border-top: 1px solid rgba(black, 0.2);
+			color: rgba(black, 0.5);
+		}
+	}
+
+	&-back {
+		padding-top: 100px;
+		.card-inner {
+			border-bottom-left-radius: $cardRadius;
+			border-bottom-right-radius: $cardRadius;
+			background-color: rgba(#F9F9F9, 1);
+			padding: 0 20px;
+		}
+		.card-footer {
+			border-top: 1px solid rgba(black, 0.05);
+			color: rgba(black, 0.5);
 		}
 	}
 
@@ -56,16 +87,6 @@ body {
 		width: 100%;
 		padding: 18px 0;
 		text-align: center;
-
-		.card-face.color-white & {
-			border-top: 1px solid rgba(white, 0.3);
-			color: rgba(white, 0.5);
-		}
-
-		.card-face.color-black & {
-			border-top: 1px solid rgba(black, 0.2);
-			color: rgba(black, 0.5);
-		}
 	}
 }
 
@@ -81,5 +102,71 @@ body {
 
 	.card-face.color-black & {
 		color: rgba(#000, 1);
+	}
+}
+
+.photo {
+	position: absolute;
+	width: 88%;
+	text-align: center;
+	margin: (-($photoSize/2)) 0 20px;
+
+	.img {
+		display: block;
+		width: $photoSize;
+		height: $photoSize;
+		position: relative;
+		margin: 0 auto;
+		border-radius: ($photoSize/4);
+
+		// background-image: url(../../images/me_hat.jpg);
+		background-size: cover;
+		background-repeat: no-repeat;
+		background-position: center center;
+	}
+}
+
+.about {
+	display: block;
+	position: relative;
+	width: 100%;
+	text-align: center;
+	padding-top: (($photoSize / 2) + 10);
+
+	.name {
+		display: block;
+		position: relative;
+		font-size: 25px;
+		font-weight: 300;
+	}
+	.title {
+		display: block;
+		position: relative;
+		font-size: 16px;
+		font-weight: 100;
+	}
+}
+
+.tags {
+	height: 200px;
+	margin: 20px 0;
+
+	.tag {
+		display: block;
+		float: left;
+		padding: 8px 16px;
+		margin: 2.5px;
+
+		border-radius: ($cardRadius/2);
+		color: white;
+		background-color: #545E9E;
+
+		&.type-framework {
+			background-color: #FF7373;
+		}
+
+		&.type-preprocessor {
+			background-color: #8B9EFF;
+		}
 	}
 }

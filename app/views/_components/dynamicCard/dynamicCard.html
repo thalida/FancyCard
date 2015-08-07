@@ -1,5 +1,6 @@
 <div class="card-face {{cardClass}} color-{{cardColor}}">
-	<div ng-if="::cardType === 'front'" class="card-inner">
+	<div ng-if="::cardType === 'front'"
+		 class="card-inner">
 		<div class="greeting"
 			 ng-bind-html="utils.sanitize(greetingText)">
 		</div>
@@ -8,5 +9,9 @@
 			 ng-bind-html="utils.sanitize(footerText)">
 		</div>
 	</div>
-	<div ng-if="::cardType === 'back'" ng-transclude></div>
+
+	<div ng-if="::cardType === 'back'"
+		 class="card-inner"
+		 ng-transclude>
+	</div>
 </div>

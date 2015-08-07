@@ -1,5 +1,5 @@
 .card {
-  transition: 1s;
+  transition: 2.5s;
   transform-style: preserve-3d;
   position: relative; }
   .card-container {
@@ -11,7 +11,7 @@
     height: 480px; }
   .card-face {
     backface-visibility: hidden;
-    transition: 1s;
+    transition: 2.5s;
     transform-style: preserve-3d;
     position: absolute;
     top: 0;

@@ -1,10 +1,19 @@
 'use strict';
 
 app.service('FancyTimeService', [
-	'timePeriods',
-	function( timePeriods ){
+	'fancyTimeDict',
+	function( fancyTimeDict ){
+		//======================================================================
+		//
+		//	Fancy Time
+		// 		Using the current time -- get the range of colors that this
+		// 		time falls between, as well as the greetings that go along
+		// 		with this time.
+		//
+		//----------------------------------------------------------------------
 		var FancyTime = function(){
-			this.groups = timePeriods.get();
+			// Get the varous groups that the day is broken into
+			this.groups = fancyTimeDict.get();
 			this.totalGroups = this.groups.length;
 		};
 
@@ -61,7 +70,7 @@ app.service('FancyTimeService', [
 		};
 
 
-		//==================================================================
+		//======================================================================
 		//
 		//	@get
 		//		Based on the start + end colors -- get the specific color
@@ -70,7 +79,7 @@ app.service('FancyTimeService', [
 		//		jQuery Color sets the distance for a transition from 0 - 1.
 		//		We need to split that distance into various intervals that represent
 		//		the current hour + mintue.
-		//------------------------------------------------------------------
+		//-----------------------------------------------------------------------
 		FancyTime.prototype.get = function(){
 			// Get the start + end colors - as well as the time used
 			var range = this.getRange();
@@ -84,29 +93,37 @@ app.service('FancyTimeService', [
 			var interval = {};
 			var distance = {};
 			var transitionColor;
+			var closestPeriod;
+
+			var numHrsInRange = Math.abs(range.groups[1].beginAt - range.groups[0].beginAt);
+			var timeSinceRangeBegin = Math.abs(range.time.hour - range.groups[0].beginAt);
 
 			// Get the total # of hours b/w the two groups
 			// Split the transition distance (1) to pieces for each hour mark
-			interval.hour = 1 / Math.abs(range.groups[1].beginAt - range.groups[0].beginAt);
+			interval.hour = 1 / numHrsInRange;
 
 			// Split the hour interval into 60 pieces (1 for each minute)
 			interval.minute = interval.hour / 60;
 
 			// Calculate the current hour + minute values using the intervals
-			distance.hour = interval.hour * Math.abs(range.time.hour - range.groups[0].beginAt);
+			distance.hour = interval.hour * timeSinceRangeBegin;
 			distance.minute = interval.minute * Math.abs(60 - range.time.minute);
 			distance.total = distance.hour + distance.minute;
 
 			// Get the color that falls x distance b/w the start + end colors
 			transitionColor = jqColors.start.transition(jqColors.end, distance.total);
 
+			// Get the time in the range that the current time is closest to
+			closestPeriod = (timeSinceRangeBegin < numHrsInRange / 2) ? range.groups[0] : range.groups[1];
+
 			return {
 				range: range.groups,
+				closestPeriod: closestPeriod,
 				color: transitionColor,
 				hexColor: transitionColor.toHexString()
 			};
 		};
 
-		return FancyTime;
+		return new FancyTime();
 	}
 ]);

@@ -4,19 +4,43 @@ app.service('VisitsService', [
 	'$localStorage',
 	'visitsDict',
 	function($localStorage, visitsDict){
+		//======================================================================
+		//
+		//	Visits
+		// 		Save the visitors # of visits as well as get the group that they
+		// 		fall into based on those visits
+		//
+		//----------------------------------------------------------------------
+
 		var Visits = function(){
+			// Get the various groups that a visitor could fall into
 			this.groups = visitsDict.get();
 			this.totalGroups = this.groups.length;
+
+			// Default the visitor count to 0 + save to localstorage
 			this.storage = $localStorage.$default({
 			    visits: 0
 			});
 		};
 
-		Visits.prototype.addNew = function() {
+		//======================================================================
+		//
+		//	@increment
+		//		Increment the visitors counter + udpate the last visited timestamp
+		//
+		//----------------------------------------------------------------------
+		Visits.prototype.increment = function() {
 			this.storage.visits += 1;
 			this.storage.lastVisit = moment().format('x');
 		};
 
+		//======================================================================
+		//
+		//	@getGroup
+		// 		Figure out what group a user falls in to based on the # of
+		// 		visists they've made to the site.
+		//
+		//----------------------------------------------------------------------
 		Visits.prototype.getGroup = function(){
 			var foundGroup;
 

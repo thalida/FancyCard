@@ -3,31 +3,29 @@
 app.directive('dynamicCard', [
 	'$interval',
 	'$sce',
+	'Utils',
 	'FancyTimeService',
 	'VisitsService',
-	function($interval, $sce, FancyTime, Visits){
+	function($interval, $sce, Utils, FancyTime, Visits){
 		return {
 			restrict: 'E',
 			replace: true,
-			transclude: true,
 			templateUrl: 'views/_components/dynamicCard/dynamicCard.html',
+			transclude: true,
 			scope: {
-				cardType: '@type'
+				cardType: '@type',
+				currFancyTime: '=?fancyTime'
 			},
 			link: function($scope, $el) {
-				$scope.utils = {
-					getRandom: function( arr ){
-						return arr[Math.floor(Math.random()*arr.length)];
-					},
-					sanitize: function(str){
-						return $sce.trustAsHtml(str);
-					}
-				};
+				$scope.utils = Utils;
 
-				var waitTime = 2 * 60 * 1000;
-				var fancyTime = new FancyTime();
+				//	init
+				// 		Sets the card & runs the animation/update
+				//--------------------------------------------------------------
+				var init = function(){
+					// Wait time between each card update
+					var waitTime = 2 * 60 * 1000;
 
-				var setup = function(){
 					$scope.cardType = $scope.cardType || 'front';
 					$scope.cardClass = 'card-' + $scope.cardType;
 
@@ -35,33 +33,34 @@ app.directive('dynamicCard', [
 					$interval(updateCard, waitTime);
 				};
 
-				var getGreetingText = function( fancyTime ){
-					// Current time in military format using moment library
-					var now = moment();
-					var hour = parseInt(now.format('H'), 10);
-
-					var numHrsInRange = Math.abs(fancyTime.range[1].beginAt - fancyTime.range[0].beginAt);
-					var timeSinceBegin = hour - fancyTime.range[0].beginAt;
-					var closestPeriod = ( timeSinceBegin < numHrsInRange / 2 ) ? fancyTime.range[0] : timePeriod.range[1];
-
-					return $scope.utils.getRandom(closestPeriod.sayings);
-				};
-
-				var getFooterText = function(){
-					var visitsGroup = Visits.getGroup();
-					return $scope.utils.getRandom(visitsGroup.sayings);
-				};
-
+				//	updateCard
+				// 		Update the card colors and sayings based on the current
+				// 		"fancy" time as well as the # of visits
+				//--------------------------------------------------------------
 				var updateCard = function(){
-					var currFancyTime = fancyTime.get();
+					// Get the info for the current time (color, sayings, name, etc)
+					var currFancyTime = FancyTime.get();
 
-					$scope.greetingText = getGreetingText( currFancyTime );
-					$scope.footerText = getFooterText();
+					// Get which group the visitor is in
+					var visitsGroup = Visits.getGroup();
+
+					// Pass the current fancy time to the parent controller
+					$scope.currFancyTime = currFancyTime;
+
+					// Update the greeting text w/ a random saying
+					$scope.greetingText = $scope.utils.getRandom(currFancyTime.closestPeriod.sayings);
+
+					// Update the footer text w/ a ranom saing based on # of visits
+					$scope.footerText = $scope.utils.getRandom(visitsGroup.sayings);
+
+					// Update the contrast card color (either white/black)
 					$scope.cardColor = currFancyTime.color.contrastColor();
+
+					// Set the background to the hex color for this time
 					$el.css( 'background', currFancyTime.hexColor );
 				};
 
-				setup();
+				init();
 			}
 		};
 	}

@@ -85,7 +85,7 @@
     box-shadow: 12px 12px 4px rgba(0, 0, 0, 0.1); } }
 
 .card {
-  transition: 1s;
+  transition: 2.5s;
   transform-style: preserve-3d;
   position: relative; }
   .card-container {
@@ -97,7 +97,7 @@
     height: 480px; }
   .card-face {
     backface-visibility: hidden;
-    transition: 1s;
+    transition: 2.5s;
     transform-style: preserve-3d;
     position: absolute;
     top: 0;
@@ -120,7 +120,7 @@ html {
 
 body {
   background-color: #EFEFEF;
-  font: 16px/1.5 'Martel', serif; }
+  font: normal 300 16px/1.5 "Roboto Slab", serif; }
 
 .app {
   position: relative;
@@ -139,9 +139,28 @@ body {
   animation: breathing cubic-bezier(0.215, 0.61, 0.355, 1) 12s infinite; }
 
 .card-face {
-  padding: 0 20px;
   -webkit-animation: breathing-shadow cubic-bezier(0.215, 0.61, 0.355, 1) 12s infinite;
   animation: breathing-shadow cubic-bezier(0.215, 0.61, 0.355, 1) 12s infinite; }
+
+.card-front {
+  padding: 0 20px; }
+  .card-front.color-white .card-footer {
+    border-top: 1px solid rgba(255, 255, 255, 0.3);
+    color: rgba(255, 255, 255, 0.5); }
+  .card-front.color-black .card-footer {
+    border-top: 1px solid rgba(0, 0, 0, 0.2);
+    color: rgba(0, 0, 0, 0.5); }
+
+.card-back {
+  padding-top: 100px; }
+  .card-back .card-inner {
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;
+    background-color: #f9f9f9;
+    padding: 0 20px; }
+  .card-back .card-footer {
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+    color: rgba(0, 0, 0, 0.5); }
 
 .card-inner {
   position: relative;
@@ -155,12 +174,6 @@ body {
   width: 100%;
   padding: 18px 0;
   text-align: center; }
-  .card-face.color-white .card-footer {
-    border-top: 1px solid rgba(255, 255, 255, 0.3);
-    color: rgba(255, 255, 255, 0.5); }
-  .card-face.color-black .card-footer {
-    border-top: 1px solid rgba(0, 0, 0, 0.2);
-    color: rgba(0, 0, 0, 0.5); }
 
 .greeting {
   font: 50px/1.5 'Amatic SC', cursive;
@@ -170,3 +183,52 @@ body {
     color: white; }
   .card-face.color-black .greeting {
     color: black; }
+
+.photo {
+  position: absolute;
+  width: 88%;
+  text-align: center;
+  margin: -45px 0 20px; }
+  .photo .img {
+    display: block;
+    width: 90px;
+    height: 90px;
+    position: relative;
+    margin: 0 auto;
+    border-radius: 22.5px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center; }
+
+.about {
+  display: block;
+  position: relative;
+  width: 100%;
+  text-align: center;
+  padding-top: 55px; }
+  .about .name {
+    display: block;
+    position: relative;
+    font-size: 25px;
+    font-weight: 300; }
+  .about .title {
+    display: block;
+    position: relative;
+    font-size: 16px;
+    font-weight: 100; }
+
+.tags {
+  height: 200px;
+  margin: 20px 0; }
+  .tags .tag {
+    display: block;
+    float: left;
+    padding: 8px 16px;
+    margin: 2.5px;
+    border-radius: 3px;
+    color: white;
+    background-color: #545E9E; }
+    .tags .tag.type-framework {
+      background-color: #FF7373; }
+    .tags .tag.type-preprocessor {
+      background-color: #8B9EFF; }
