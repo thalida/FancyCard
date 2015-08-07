@@ -152,10 +152,6 @@ body {
 	margin: 20px 0;
 
 	.tag {
-		$baseColor: #0AACD2;
-		// $baseColor: #888;
-		// $baseColor: #6D577E;
-
 		display: block;
 		float: left;
 		padding: 8px 16px;
@@ -165,21 +161,6 @@ body {
 
 		color: black;
 		border: 2px solid;
-		border-color: rgba($baseColor, 0.2);
-
-		// color: white;
-		// background-color: rgba($baseColor, 0.5);
-
-		&.type-framework,
-		&.weight-strong {
-			border-color: rgba($baseColor, 1);
-			// background-color: rgba($baseColor, 1);
-		}
-
-		&.type-preprocessor,
-		&.weight-medium {
-			border-color: rgba($baseColor, 0.5);
-			// background-color: rgba($baseColor, 0.7);
-		}
+		border-color: rgba(black, 0.2);
 	}
 }

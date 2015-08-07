@@ -24,13 +24,14 @@
 			</div>
 
 			<div class="tags">
-				<span class="tag weight-strong">AngularJS</span>
-				<span class="tag weight-strong">Coffeescript</span>
-				<span class="tag weight-medium">Grunt</span>
-				<span class="tag weidght-light">Gulp</span>
-				<span class="tag weight-strong">SCSS</span>
-				<span class="tag weight-light">Backbone</span>
-				<span class="tag weight-light">React</span>
+				<span class="tag"
+					  ng-style="{
+					  	'border-color': '{{getTagColor(skill)}}'
+					  }"
+					  ng-class="'weight-' + skill.weight"
+					  ng-repeat="(key, skill) in skills">
+					  {{skill.label}}
+				</span>
 			</div>
 
 			<div class="card-footer">

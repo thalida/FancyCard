@@ -228,10 +228,4 @@ body {
     border-radius: 3px;
     color: black;
     border: 2px solid;
-    border-color: rgba(10, 172, 210, 0.2); }
-    .tags .tag.type-framework,
-    .tags .tag.weight-strong {
-      border-color: #0aacd2; }
-    .tags .tag.type-preprocessor,
-    .tags .tag.weight-medium {
-      border-color: rgba(10, 172, 210, 0.5); }
+    border-color: rgba(0, 0, 0, 0.2); }
