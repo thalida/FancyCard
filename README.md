@@ -1,14 +1,9 @@
-# thalida.com
+# Angular Version
 
-### Run
+This is the angular/default version of my site.
 
-
-```
-npm start
-```
-
-```
-gulp
-```
-
-Browse to the app at `http://localhost:8000/app/index.html`.
+### Developed With:
+- Angular (of course)
+- SCSS
+- Gulp
+- Bower
