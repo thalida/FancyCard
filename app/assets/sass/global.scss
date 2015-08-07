@@ -4,6 +4,8 @@ html { box-sizing: border-box; }
 body {
 	background-color: #EFEFEF;
 	font: normal 300 16px/1.5 'Roboto Slab', serif;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
 }
 
 .app {
