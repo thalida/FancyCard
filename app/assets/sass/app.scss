@@ -152,21 +152,34 @@ body {
 	margin: 20px 0;
 
 	.tag {
+		$baseColor: #0AACD2;
+		// $baseColor: #888;
+		// $baseColor: #6D577E;
+
 		display: block;
 		float: left;
 		padding: 8px 16px;
 		margin: 2.5px;
 
 		border-radius: ($cardRadius/2);
-		color: white;
-		background-color: #545E9E;
 
-		&.type-framework {
-			background-color: #FF7373;
+		color: black;
+		border: 2px solid;
+		border-color: rgba($baseColor, 0.2);
+
+		// color: white;
+		// background-color: rgba($baseColor, 0.5);
+
+		&.type-framework,
+		&.weight-strong {
+			border-color: rgba($baseColor, 1);
+			// background-color: rgba($baseColor, 1);
 		}
 
-		&.type-preprocessor {
-			background-color: #8B9EFF;
+		&.type-preprocessor,
+		&.weight-medium {
+			border-color: rgba($baseColor, 0.5);
+			// background-color: rgba($baseColor, 0.7);
 		}
 	}
 }

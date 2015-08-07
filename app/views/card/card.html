@@ -6,8 +6,10 @@
      ng-click="flipCard()"
      ng-mouseenter="pauseAnimation()"
      ng-mouseleave="playAnimation()">
+
 	<div class="card">
 		<dynamic:card type="front"></dynamic:card>
+
 		<dynamic:card type="back" fancy-time="fancyTime">
 			<div class="photo">
 				<span class="img"
@@ -22,12 +24,13 @@
 			</div>
 
 			<div class="tags">
-				<span class="tag type-framework">Angular</span>
-				<span class="tag type-preprocessor">Coffeescript</span>
-				<span class="tag type-builder">Grunt</span>
-				<span class="tag type-preprocessor">SASS/SCSS</span>
-				<span class="tag type-builder">Gulp</span>
-				<span class="tag type-framework">Backbone</span>
+				<span class="tag weight-strong">AngularJS</span>
+				<span class="tag weight-strong">Coffeescript</span>
+				<span class="tag weight-medium">Grunt</span>
+				<span class="tag weidght-light">Gulp</span>
+				<span class="tag weight-strong">SCSS</span>
+				<span class="tag weight-light">Backbone</span>
+				<span class="tag weight-light">React</span>
 			</div>
 
 			<div class="card-footer">
