@@ -4,8 +4,8 @@
      	'stopAnimation': runAnimation == false
      }"
      ng-click="flipCard()"
-     ng-mouseenter="pauseAnimation()"
-     ng-mouseleave="playAnimation()">
+     ng-mouseenter="setAnimation( false )"
+     ng-mouseleave="setAnimation( true )">
 
 	<div class="card">
 		<dynamic:card face="front" fancy-time="fancyTime">
