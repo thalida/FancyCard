@@ -1,7 +1,8 @@
 var gulp = require('gulp');
 var sass = require('gulp-sass');
 var sassPaths = {
-	src: 'app/assets/sass/**/*.scss',
+	allFiles: 'app/assets/sass/**/*.scss',
+	src: 'app/assets/sass/**/app.scss',
 	dest: './app/assets/css/'
 };
 
@@ -12,5 +13,5 @@ gulp.task('styles', function() {
 });
 
 gulp.task('default',function() {
-    gulp.watch(sassPaths.src,['styles']);
+    gulp.watch(sassPaths.allFiles,['styles']);
 });

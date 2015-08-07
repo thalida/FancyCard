@@ -10,7 +10,6 @@ $cardFooterH: (100% - $cardContentH);
 @import 'animations';
 @import 'card';
 
-
 .card {
 	&-container,
 	&-face {
@@ -139,6 +138,7 @@ $cardFooterH: (100% - $cardContentH);
 		font-size: 25px;
 		font-weight: 300;
 	}
+
 	.title {
 		display: block;
 		position: relative;
@@ -148,8 +148,9 @@ $cardFooterH: (100% - $cardContentH);
 }
 
 .tags {
-	height: 200px;
+	height: 50%;
 	margin-top: 20px;
+	overflow: hidden;
 
 	.tag {
 		display: block;
