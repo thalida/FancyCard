@@ -19,15 +19,16 @@ app.controller('CardCtrl', [
 	function($scope, $timeout, Utils, Visits, skillsDict) {
 		$scope.totalVisits = Visits.increment();
 
+		var photoOptions = [
+			'assets/images/me_door.jpg',
+			'assets/images/me_yellow.jpg',
+			'assets/images/me_hat.jpg'
+		];
+
 		$scope.utils = Utils;
 		$scope.fancyTime = null;
 		$scope.isFrontShown = true;
 		$scope.runAnimation = true;
-		$scope.photo = Utils.getRandom([
-			'assets/images/me_yellow.jpg',
-			'assets/images/me_door.jpg',
-			'assets/images/me_hat.jpg'
-		]);
 		$scope.skills = skillsDict.get();
 		$scope.hasClicked = false;
 
@@ -80,9 +81,32 @@ app.controller('CardCtrl', [
 
 		};
 
+		$scope.updatePhoto = function(){
+			var timeName = $scope.fancyTime.closestPeriod.name;
+			var photo;
+
+			switch(timeName){
+				case 'earlybird':
+				case 'morning':
+					photo = photoOptions[0];
+					break;
+				case 'afternoon':
+				case 'midafternoon':
+				case 'evening':
+					photo = photoOptions[1];
+					break;
+				default:
+					photo = photoOptions[2];
+					break;
+			}
+
+			$scope.photo = photo;
+		};
+
 		$scope.$watch('fancyTime', function(fancyTime){
 			if( fancyTime !== null ){
 				$scope.updateText();
+				$scope.updatePhoto();
 			}
 		});
 

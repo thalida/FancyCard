@@ -23,7 +23,7 @@
 			<div class="card-content">
 				<div class="photo">
 					<span class="img"
-						  ng-style="{'background-image': 'url({{photo}})'}">
+						  ng-style="{'background-image': 'url(' + photo + ')'}">
 					</span>
 				</div>
 
@@ -36,7 +36,7 @@
 				<div class="tags">
 					<span class="tag"
 						  ng-style="{
-						  	'border-color': '{{::getTagColor(skill)}}'
+						  	'border-color': '{{getTagColor(skill)}}'
 						  }"
 						  ng-class="'weight-' + skill.weight"
 						  ng-repeat="(key, skill) in ::skills">
