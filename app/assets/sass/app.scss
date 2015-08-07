@@ -1,24 +1,15 @@
+$photoSize: 90px;
+$cardRadius: 6px;
+$cardWidth: 85%;
+$cardMargins: ((100% - $cardWidth) / 2);
+$cardContentH: 85%;
+$cardFooterH: (100% - $cardContentH);
+
+@import 'global';
 @import 'mixins';
 @import 'animations';
 @import 'card';
 
-$photoSize: 90px;
-$cardRadius: 6px;
-
-
-html { box-sizing: border-box; }
-*, *:before, *:after { box-sizing: inherit; }
-
-body {
-	background-color: #EFEFEF;
-	font: normal 300 16px/1.5 'Roboto Slab', serif;
-}
-
-.app {
-	position: relative;
-	height: 100vh;
-	width: 100vw;
-}
 
 .card {
 	&-container,
@@ -47,8 +38,6 @@ body {
 	}
 
 	&-front {
-		padding: 0 20px;
-
 		.card-footer {
 			background-image: url(../images/arrow-right.svg);
 			background-repeat: no-repeat;
@@ -67,40 +56,46 @@ body {
 	}
 
 	&-back {
-		padding-top: 100px;
-		.card-inner {
+		padding-top: $photoSize;
+
+		.card-content,
+		.card-footer{
+			width: 100%;
+			background-color: rgba(#F9F9F9, 1);
+			padding: 0 $cardMargins;
+		}
+
+		.card-footer {
+			padding-top: 5%;
+			border-top: 1px solid rgba(black, 0.05);
 			border-bottom-left-radius: $cardRadius;
 			border-bottom-right-radius: $cardRadius;
-			background-color: rgba(#F9F9F9, 1);
-			padding: 0 20px;
-		}
-		.card-footer {
-			border-top: 1px solid rgba(black, 0.05);
 			color: rgba(black, 0.5);
 		}
 	}
 
-	&-inner {
+	&-content {
 		position: relative;
-		height: 100%;
+		height: $cardContentH;
+		width: $cardWidth;
+		margin: 0 auto;
 	}
 
 	&-footer {
-		position: absolute;
-		bottom: 0;
-		left: 0;
-		height: 60px;
-		width: 100%;
-		padding: 18px 0;
+		clear: both;
+		position: relative;
+		height: $cardFooterH;
+		width: $cardWidth;
+		margin: 0 auto;
+		padding: ($cardFooterH / 2) 0;
 		text-align: center;
 	}
 }
 
 .greeting {
-	// @extend %vertical-align;
+	@extend %vertical-align;
 	font: 50px/1.5 'Amatic SC', cursive;
 	text-align: center;
-	padding-top: 60%;
 
 	.card-face.color-white & {
 		color: rgba(#fff, 1);
@@ -113,7 +108,7 @@ body {
 
 .photo {
 	position: absolute;
-	width: 88%;
+	width: $cardWidth;
 	text-align: center;
 	margin: (-($photoSize/2)) 0 20px;
 
@@ -154,7 +149,7 @@ body {
 
 .tags {
 	height: 200px;
-	margin: 20px 0;
+	margin-top: 20px;
 
 	.tag {
 		display: block;
