@@ -5,6 +5,11 @@ $cardMargins: ((100% - $cardWidth) / 2);
 $cardContentH: 85%;
 $cardFooterH: (100% - $cardContentH);
 
+// cubic-bezier(0.445, 0.050, 0.550, 0.950) easeInOutSine
+// cubic-bezier(0.215, 0.610, 0.355, 1.000)
+$animationTiming: cubic-bezier(0.445, 0.050, 0.550, 0.950);
+$animationSpeed: 4s;
+
 @import 'global';
 @import 'mixins';
 @import 'animations';
@@ -21,16 +26,16 @@ $cardFooterH: (100% - $cardContentH);
 	&-container {
 		@extend %vertical-align;
 		margin: 0 auto;
-		-webkit-animation: breathing cubic-bezier(0.215, 0.610, 0.355, 1.000) 12s infinite;
-		animation: breathing cubic-bezier(0.215, 0.610, 0.355, 1.000) 12s infinite;
+		-webkit-animation: breathing $animationTiming $animationSpeed infinite;
+		animation: breathing $animationTiming $animationSpeed infinite;
 		&.stopAnimation {
 			@extend %pause-animation;
 		}
 	}
 
 	&-face {
-		-webkit-animation: breathing-shadow cubic-bezier(0.215, 0.610, 0.355, 1.000) 12s infinite;
-		animation: breathing-shadow cubic-bezier(0.215, 0.610, 0.355, 1.000) 12s infinite;
+		-webkit-animation: breathing-shadow $animationTiming $animationSpeed infinite;
+		animation: breathing-shadow $animationTiming $animationSpeed infinite;
 		.card-container.stopAnimation & {
 			@extend %pause-animation;
 		}

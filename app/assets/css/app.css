@@ -124,12 +124,12 @@ body {
 
 .card-container {
   margin: 0 auto;
-  -webkit-animation: breathing cubic-bezier(0.215, 0.61, 0.355, 1) 12s infinite;
-  animation: breathing cubic-bezier(0.215, 0.61, 0.355, 1) 12s infinite; }
+  -webkit-animation: breathing cubic-bezier(0.445, 0.05, 0.55, 0.95) 4s infinite;
+  animation: breathing cubic-bezier(0.445, 0.05, 0.55, 0.95) 4s infinite; }
 
 .card-face {
-  -webkit-animation: breathing-shadow cubic-bezier(0.215, 0.61, 0.355, 1) 12s infinite;
-  animation: breathing-shadow cubic-bezier(0.215, 0.61, 0.355, 1) 12s infinite; }
+  -webkit-animation: breathing-shadow cubic-bezier(0.445, 0.05, 0.55, 0.95) 4s infinite;
+  animation: breathing-shadow cubic-bezier(0.445, 0.05, 0.55, 0.95) 4s infinite; }
 
 .card-front .card-footer {
   background-image: url(../images/arrow-right.svg);
