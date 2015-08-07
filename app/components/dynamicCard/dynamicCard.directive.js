@@ -58,6 +58,8 @@ app.directive('dynamicCard', [
 
 					// Set the background to the hex color for this time
 					$el.css( 'background', currFancyTime.hexColor );
+
+					console.log( currFancyTime.color.toRgbaString() );
 				};
 
 				init();

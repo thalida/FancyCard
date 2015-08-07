@@ -95,26 +95,29 @@ app.service('FancyTimeService', [
 			var transitionColor;
 			var closestPeriod;
 
-			var numHrsInRange = Math.abs(range.groups[1].beginAt - range.groups[0].beginAt);
+			var endRangeTime = (range.groups[1].beginAt === 0) ? 24 : range.groups[1].beginAt;
+			var numHrsInRange = Math.abs(endRangeTime - range.groups[0].beginAt);
 			var timeSinceRangeBegin = Math.abs(range.time.hour - range.groups[0].beginAt);
 
 			// Get the total # of hours b/w the two groups
 			// Split the transition distance (1) to pieces for each hour mark
-			interval.hour = 1 / numHrsInRange;
+			interval.hour = +(1 / numHrsInRange).toFixed(3);
 
 			// Split the hour interval into 60 pieces (1 for each minute)
-			interval.minute = interval.hour / 60;
+			interval.minute = +(interval.hour / 60).toFixed(3);
 
 			// Calculate the current hour + minute values using the intervals
-			distance.hour = interval.hour * timeSinceRangeBegin;
-			distance.minute = interval.minute * Math.abs(60 - range.time.minute);
-			distance.total = distance.hour + distance.minute;
+			distance.hour = +(interval.hour * timeSinceRangeBegin).toFixed(3);
+			distance.minute = +(interval.minute * range.time.minute).toFixed(3);
+			distance.total = +(distance.hour + distance.minute).toFixed(3);
 
 			// Get the color that falls x distance b/w the start + end colors
 			transitionColor = jqColors.start.transition(jqColors.end, distance.total);
 
 			// Get the time in the range that the current time is closest to
 			closestPeriod = (timeSinceRangeBegin < numHrsInRange / 2) ? range.groups[0] : range.groups[1];
+
+			console.log( numHrsInRange, range.time.minute, timeSinceRangeBegin, interval, distance );
 
 			return {
 				range: range.groups,
