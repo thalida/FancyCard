@@ -12,11 +12,12 @@ app.config([
 
 app.controller('CardCtrl', [
 	'$scope',
+	'$timeout',
 	'Utils',
 	'VisitsService',
 	'skillsDict',
-	function($scope, Utils, Visits, skillsDict) {
-		Visits.increment();
+	function($scope, $timeout, Utils, Visits, skillsDict) {
+		$scope.totalVisits = Visits.increment();
 
 		$scope.utils = Utils;
 		$scope.fancyTime = null;
@@ -28,18 +29,21 @@ app.controller('CardCtrl', [
 			'assets/images/me_hat.jpg'
 		]);
 		$scope.skills = skillsDict.get();
+		$scope.hasClicked = false;
 
 		$scope.flipCard = function(){
+			$scope.hasClicked = true;
 			$scope.isFrontShown = !$scope.isFrontShown;
-			$scope.pauseAnimation();
+
+			if( $scope.isFrontShown === false ){
+				$scope.setAnimation( true );
+			} else {
+				$scope.setAnimation( false );
+			}
 		};
 
-		$scope.pauseAnimation = function(){
-			$scope.runAnimation = false;
-		};
-
-		$scope.playAnimation = function(){
-			$scope.runAnimation = true;
+		$scope.setAnimation = function( isRunning ){
+			$scope.runAnimation = isRunning;
 		};
 
 		$scope.getTagColor = function( tag ){
@@ -52,7 +56,6 @@ app.controller('CardCtrl', [
 			var rgba = newColor.rgba().join(', ');
 			var rgb = rgba.substring(0, rgba.length - 1);
 			var newAlpha;
-			var tagColor;
 
 			if( tag.weight === 'strong' ){
 				newAlpha = 1;
@@ -82,5 +85,11 @@ app.controller('CardCtrl', [
 				$scope.updateText();
 			}
 		});
+
+		$timeout(function(){
+			if( $scope.totalVisits <= 1 && $scope.hasClicked === false ){
+				$scope.flipCard();
+			}
+		}, 5 * 1000);
 	}
 ]);

@@ -19,7 +19,8 @@ app.service('VisitsService', [
 
 			// Default the visitor count to 0 + save to localstorage
 			this.storage = $localStorage.$default({
-			    visits: 0
+			    visits: 1,
+			    lastVisit: moment().format('x')
 			});
 		};
 
@@ -30,8 +31,15 @@ app.service('VisitsService', [
 		//
 		//----------------------------------------------------------------------
 		Visits.prototype.increment = function() {
-			this.storage.visits += 1;
-			this.storage.lastVisit = moment().format('x');
+			var now = moment();
+			var lastVisit = moment(this.storage.lastVisit, 'x');
+
+			if( now.diff(lastVisit, 'minutes') > 10 ){
+				this.storage.visits += 1;
+				this.storage.lastVisit = moment().format('x');
+			}
+
+			return this.storage.visits;
 		};
 
 		//======================================================================

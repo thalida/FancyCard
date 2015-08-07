@@ -6,7 +6,9 @@ html {
 
 body {
   background-color: #EFEFEF;
-  font: normal 300 16px/1.5 "Roboto Slab", serif; }
+  font: normal 300 16px/1.5 "Roboto Slab", serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale; }
 
 .app {
   position: relative;
@@ -132,15 +134,16 @@ body {
   animation: breathing-shadow cubic-bezier(0.445, 0.05, 0.55, 0.95) 4s infinite; }
 
 .card-front .card-footer {
-  background-image: url(../images/arrow-right.svg);
   background-repeat: no-repeat;
   background-position: center right; }
 
 .card-front.color-white .card-footer {
+  background-image: url(../images/arrow-right-white.svg);
   border-top: 1px solid rgba(255, 255, 255, 0.3);
   color: rgba(255, 255, 255, 0.5); }
 
 .card-front.color-black .card-footer {
+  background-image: url(../images/arrow-right-black.svg);
   border-top: 1px solid rgba(0, 0, 0, 0.2);
   color: rgba(0, 0, 0, 0.5); }
 
