@@ -1,4 +1,4 @@
-@include keyframes(breathing) {
+@include keyframes(breathing-valign) {
 	0%,
 	100% {
 		-webkit-transform: translateY(-50%) scale(0.95);
@@ -8,6 +8,19 @@
 	50% {
 		-webkit-transform: translateY(-50%) scale(1);
 		transform: translateY(-50%) scale(1);
+	}
+}
+
+@include keyframes(breathing) {
+	0%,
+	100% {
+		-webkit-transform: translateY(0%) scale(0.95);
+		transform: translateY(0%) scale(0.95);
+	}
+
+	50% {
+		-webkit-transform: translateY(0%) scale(1);
+		transform: translateY(0%) scale(1);
 	}
 }
 

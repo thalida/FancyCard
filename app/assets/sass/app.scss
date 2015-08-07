@@ -24,12 +24,19 @@ $animationSpeed: 4s;
 	}
 
 	&-container {
-		@extend %vertical-align;
-		margin: 0 auto;
+		@include top-align;
+		margin: 1% auto;
 		-webkit-animation: breathing $animationTiming $animationSpeed infinite;
 		animation: breathing $animationTiming $animationSpeed infinite;
 		&.stopAnimation {
 			@extend %pause-animation;
+		}
+
+		@media(min-height: 550px){
+			@include vertical-align;
+			margin: 0 auto;
+			-webkit-animation-name: breathing-valign;
+			animation-name: breathing-valign;
 		}
 	}
 

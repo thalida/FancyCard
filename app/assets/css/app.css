@@ -15,7 +15,7 @@ body {
   height: 100vh;
   width: 100vw; }
 
-.card-container, .greeting {
+.greeting {
   position: relative;
   top: 50%;
   -webkit-transform: translateY(-50%);
@@ -26,7 +26,7 @@ body {
   -webkit-animation-play-state: paused;
   animation-play-state: paused; }
 
-@-webkit-keyframes breathing {
+@-webkit-keyframes breathing-valign {
   0%,
   100% {
     -webkit-transform: translateY(-50%) scale(0.95);
@@ -34,33 +34,69 @@ body {
   50% {
     -webkit-transform: translateY(-50%) scale(1);
     transform: translateY(-50%) scale(1); } }
+
+@-moz-keyframes breathing-valign {
+  0%,
+  100% {
+    -webkit-transform: translateY(-50%) scale(0.95);
+    transform: translateY(-50%) scale(0.95); }
+  50% {
+    -webkit-transform: translateY(-50%) scale(1);
+    transform: translateY(-50%) scale(1); } }
+
+@-ms-keyframes breathing-valign {
+  0%,
+  100% {
+    -webkit-transform: translateY(-50%) scale(0.95);
+    transform: translateY(-50%) scale(0.95); }
+  50% {
+    -webkit-transform: translateY(-50%) scale(1);
+    transform: translateY(-50%) scale(1); } }
+
+@keyframes breathing-valign {
+  0%,
+  100% {
+    -webkit-transform: translateY(-50%) scale(0.95);
+    transform: translateY(-50%) scale(0.95); }
+  50% {
+    -webkit-transform: translateY(-50%) scale(1);
+    transform: translateY(-50%) scale(1); } }
+
+@-webkit-keyframes breathing {
+  0%,
+  100% {
+    -webkit-transform: translateY(0%) scale(0.95);
+    transform: translateY(0%) scale(0.95); }
+  50% {
+    -webkit-transform: translateY(0%) scale(1);
+    transform: translateY(0%) scale(1); } }
 
 @-moz-keyframes breathing {
   0%,
   100% {
-    -webkit-transform: translateY(-50%) scale(0.95);
-    transform: translateY(-50%) scale(0.95); }
+    -webkit-transform: translateY(0%) scale(0.95);
+    transform: translateY(0%) scale(0.95); }
   50% {
-    -webkit-transform: translateY(-50%) scale(1);
-    transform: translateY(-50%) scale(1); } }
+    -webkit-transform: translateY(0%) scale(1);
+    transform: translateY(0%) scale(1); } }
 
 @-ms-keyframes breathing {
   0%,
   100% {
-    -webkit-transform: translateY(-50%) scale(0.95);
-    transform: translateY(-50%) scale(0.95); }
+    -webkit-transform: translateY(0%) scale(0.95);
+    transform: translateY(0%) scale(0.95); }
   50% {
-    -webkit-transform: translateY(-50%) scale(1);
-    transform: translateY(-50%) scale(1); } }
+    -webkit-transform: translateY(0%) scale(1);
+    transform: translateY(0%) scale(1); } }
 
 @keyframes breathing {
   0%,
   100% {
-    -webkit-transform: translateY(-50%) scale(0.95);
-    transform: translateY(-50%) scale(0.95); }
+    -webkit-transform: translateY(0%) scale(0.95);
+    transform: translateY(0%) scale(0.95); }
   50% {
-    -webkit-transform: translateY(-50%) scale(1);
-    transform: translateY(-50%) scale(1); } }
+    -webkit-transform: translateY(0%) scale(1);
+    transform: translateY(0%) scale(1); } }
 
 @-webkit-keyframes breathing-shadow {
   0%,
@@ -125,9 +161,24 @@ body {
   border-radius: 6px; }
 
 .card-container {
-  margin: 0 auto;
+  position: relative;
+  top: 0%;
+  -webkit-transform: translateY(0%);
+  -ms-transform: translateY(0%);
+  transform: translateY(0%);
+  margin: 1% auto;
   -webkit-animation: breathing cubic-bezier(0.445, 0.05, 0.55, 0.95) 4s infinite;
   animation: breathing cubic-bezier(0.445, 0.05, 0.55, 0.95) 4s infinite; }
+  @media (min-height: 550px) {
+    .card-container {
+      position: relative;
+      top: 50%;
+      -webkit-transform: translateY(-50%);
+      -ms-transform: translateY(-50%);
+      transform: translateY(-50%);
+      margin: 0 auto;
+      -webkit-animation-name: breathing-valign;
+      animation-name: breathing-valign; } }
 
 .card-face {
   -webkit-animation: breathing-shadow cubic-bezier(0.445, 0.05, 0.55, 0.95) 4s infinite;
