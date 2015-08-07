@@ -23,8 +23,8 @@ app.service('FancyTimeService', [
 		//		Get the color transtion range based on the current time
 		//
 		//----------------------------------------------------------------------
-		FancyTime.prototype.getRange = function(){
-			var now = moment();
+		FancyTime.prototype.getRange = function( time ){
+			var now = time || moment();
 
 			// Current hour + minutes in military time
 			var hour = parseInt(now.format('H'), 10);
@@ -48,9 +48,7 @@ app.service('FancyTimeService', [
 				// 	AND current hour is < nextGroup's start time
 				// 	OR  nextGroup's start time is midnight
 				//		meaning that the currGroup's index is the last in the arr
-				if( hour >= currGroup.beginAt
-					&& (hour < nextGroup.beginAt || nextGroup.beginAt === 0)
-				){
+				if( hour >= currGroup.beginAt && (hour < nextGroup.beginAt || nextGroup.beginAt === 0) ){
 					timeRange[0] = currGroup;
 					timeRange[1] = nextGroup;
 					break;
@@ -115,7 +113,8 @@ app.service('FancyTimeService', [
 			transitionColor = jqColors.start.transition(jqColors.end, distance.total);
 
 			// Get the time in the range that the current time is closest to
-			closestPeriod = (timeSinceRangeBegin < numHrsInRange / 2) ? range.groups[0] : range.groups[1];
+			// closestPeriod = (timeSinceRangeBegin < numHrsInRange / 2) ? range.groups[0] : range.groups[1];
+			closestPeriod = (timeSinceRangeBegin < numHrsInRange - 1) ? range.groups[0] : range.groups[1];
 
 			return {
 				range: range.groups,
