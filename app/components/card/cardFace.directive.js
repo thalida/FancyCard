@@ -1,21 +1,20 @@
 'use strict';
 
-app.directive('dynamicCard', [
+app.directive('cardFace', [
 	'$interval',
 	'$sce',
 	'Utils',
-	'FancyTimeService',
-	function($interval, $sce, Utils, FancyTime){
+	function($interval, $sce, Utils){
 		return {
+			require: '^card',
 			restrict: 'E',
 			replace: true,
-			templateUrl: 'components/dynamicCard/dynamicCard.html',
+			templateUrl: 'components/card/templates/cardFace.html',
 			transclude: true,
 			scope: {
-				cardFace: '@face',
-				currFancyTime: '=?fancyTime'
+				cardFace: '@type'
 			},
-			link: function($scope, $el) {
+			link: function($scope, $el, $attrs, cardCtrl) {
 				$scope.utils = Utils;
 
 				//	init
@@ -38,7 +37,7 @@ app.directive('dynamicCard', [
 				//--------------------------------------------------------------
 				var updateCard = function(){
 					// Get the info for the current time (color, sayings, name, etc)
-					var currFancyTime = FancyTime.get();
+					var currFancyTime = cardCtrl.getFancyTime();
 
 					// Pass the current fancy time to the parent controller
 					$scope.currFancyTime = currFancyTime;

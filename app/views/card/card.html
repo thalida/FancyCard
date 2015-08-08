@@ -1,52 +1,42 @@
-<div class="card-container"
-     ng-class="{
-     	'showBack': !isFrontShown,
-     	'stopAnimation': runAnimation == false
-     }"
-     ng-click="flipCard()"
-     ng-mouseenter="setAnimation( false )"
-     ng-mouseleave="setAnimation( true )">
-
-	<div class="card">
-		<dynamic:card face="front" fancy-time="fancyTime">
-			<div class="card-content">
-				<div class="greeting"
-					 ng-bind-html="utils.sanitize(greetingText)">
-				</div>
+<card fancy-time="fancyTime">
+	<card:face type="front">
+		<div class="card-content">
+			<div class="greeting"
+				 ng-bind-html="utils.sanitize(greetingText)">
 			</div>
-			<div class="card-footer"
-				 ng-bind-html="utils.sanitize(footerText)">
-			</div>
-		</dynamic:card>
+		</div>
+		<div class="card-footer"
+			 ng-bind-html="utils.sanitize(footerText)">
+		</div>
+	</card:face>
 
-		<dynamic:card face="back">
-			<div class="card-content">
-				<div class="photo">
-					<span class="img"
-						  ng-style="{'background-image': 'url(' + photo + ')'}">
-					</span>
-				</div>
-
-				<div class="about">
-					<span class="name">Thalida Noel</span>
-					<span class="title">Mobile Web Developer</span>
-					<span class="title">OkCupid</span>
-				</div>
-
-				<div class="tags">
-					<span class="tag"
-						  ng-style="{
-						  	'border-color': '{{getTagColor(skill)}}'
-						  }"
-						  ng-class="'weight-' + skill.weight"
-						  ng-repeat="(key, skill) in ::skills">
-						  {{::skill.label}}
-					</span>
-				</div>
+	<card:face type="back">
+		<div class="card-content">
+			<div class="photo">
+				<span class="img"
+					  ng-style="{'background-image': 'url(' + photo + ')'}">
+				</span>
 			</div>
-			<div class="card-footer">
-				social links
+
+			<div class="about">
+				<span class="name">Thalida Noel</span>
+				<span class="title">Mobile Web Developer</span>
+				<span class="title">OkCupid</span>
 			</div>
-		</dynamic:card>
-	</div>
-</div>
+
+			<div class="tags">
+				<span class="tag"
+					  ng-style="{
+					  	'border-color': '{{getTagColor(skill)}}'
+					  }"
+					  ng-class="'weight-' + skill.weight"
+					  ng-repeat="(key, skill) in ::skills">
+					  {{::skill.label}}
+				</span>
+			</div>
+		</div>
+		<div class="card-footer">
+			social links
+		</div>
+	</card:face>
+</card>

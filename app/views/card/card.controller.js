@@ -11,41 +11,18 @@ app.config([
 ]);
 
 app.controller('CardCtrl', [
+	'$rootScope',
 	'$scope',
 	'$timeout',
 	'Utils',
 	'VisitsService',
 	'skillsDict',
-	function($scope, $timeout, Utils, Visits, skillsDict) {
-		$scope.totalVisits = Visits.increment();
-
-		var photoOptions = [
-			'assets/images/me_door.jpg',
-			'assets/images/me_yellow.jpg',
-			'assets/images/me_hat.jpg'
-		];
+	function($rootScope, $scope, $timeout, Utils, Visits, skillsDict) {
+		$rootScope.totalVisits = Visits.increment();
 
 		$scope.utils = Utils;
 		$scope.fancyTime = null;
-		$scope.isFrontShown = true;
-		$scope.runAnimation = true;
 		$scope.skills = skillsDict.get();
-		$scope.hasClicked = false;
-
-		$scope.flipCard = function(){
-			$scope.hasClicked = true;
-			$scope.isFrontShown = !$scope.isFrontShown;
-
-			if( $scope.isFrontShown === true ){
-				$scope.setAnimation( true );
-			} else {
-				$scope.setAnimation( false );
-			}
-		};
-
-		$scope.setAnimation = function( isRunning ){
-			$scope.runAnimation = isRunning;
-		};
 
 		$scope.getTagColor = function( tag ){
 			if( $scope.fancyTime === null ){
@@ -83,6 +60,11 @@ app.controller('CardCtrl', [
 
 		$scope.updatePhoto = function(){
 			var timeName = $scope.fancyTime.closestPeriod.name;
+			var photoOptions = [
+				'assets/images/me_door.jpg',
+				'assets/images/me_yellow.jpg',
+				'assets/images/me_hat.jpg'
+			];
 			var photo;
 
 			switch(timeName){
@@ -109,11 +91,5 @@ app.controller('CardCtrl', [
 				$scope.updatePhoto();
 			}
 		});
-
-		$timeout(function(){
-			if( $scope.totalVisits <= 1 && $scope.hasClicked === false ){
-				$scope.flipCard();
-			}
-		}, 5 * 1000);
 	}
 ]);
