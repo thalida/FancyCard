@@ -24,15 +24,31 @@ app.controller('CardCtrl', [
 	'Utils',
 	'VisitsService',
 	'skillsDict',
-	function($rootScope, $scope, $timeout, Utils, Visits, skillsDict) {
+	'socialDict',
+	function($rootScope, $scope, $timeout, Utils, Visits, skillsDict, socialDict) {
 		$rootScope.totalVisits = Visits.increment();
 
 		$scope.utils = Utils;
 		$scope.fancyTime = null;
 		$scope.skills = skillsDict.get();
+		$scope.social = socialDict.get();
+
+		$scope.disableFlip = function( e ){
+			console.log( e );
+			e.stopPropagation();
+			e.preventDefault();
+		};
+
+		$scope.navigateTo = function( e, site ){
+			console.log( e );
+			e.stopPropagation();
+			e.preventDefault();
+
+			window.location = site.url;
+		};
 
 		//	@getTagColor
-		// 		Display a saturated opaque version of the current FancyTime color
+		// 		Display an opaque version of the current FancyTime color
 		// 		Where each alpha level represents the weight (skill strength)
 		// 		of the tag
 		//----------------------------------------------------------------------
@@ -41,15 +57,8 @@ app.controller('CardCtrl', [
 				return '';
 			}
 
-			// Get the current saturation level of the color
-			var currSaturation = $scope.fancyTime.color.saturation();
-			// Create a new color w/ a decreased level of saturation
-			// var newColor = $scope.fancyTime.color.saturation( currSaturation - 0.3 );
-			var newColor = $scope.fancyTime.color;
-
-			// Convert the rgba array to a string -- and remove the alpha
-			// portion of the newly created sting.
-			var rgba = newColor.rgba().join(', ');
+			// Convert the rgba array to a string and remove the alpha value
+			var rgba = $scope.fancyTime.color.rgba().join(', ');
 			var rgb = rgba.substring(0, rgba.length - 1);
 
 			// Get the new alpha opacity based on the weight of the tag
