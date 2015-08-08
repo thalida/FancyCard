@@ -252,33 +252,37 @@ body {
     background-repeat: no-repeat;
     background-position: center center; }
 
-.about {
+.details {
   display: block;
   position: relative;
   width: 100%;
   text-align: center;
   padding-top: 55px; }
-  .about .name {
+  .details .name {
     display: block;
     position: relative;
     font-size: 25px;
     font-weight: 300; }
-  .about .title {
+  .details .title {
     display: block;
     position: relative;
     font-size: 16px;
     font-weight: 100; }
 
+.bio {
+  margin: 10px 0;
+  font-size: 14px; }
+
 .tags {
   height: 50%;
-  margin-top: 20px;
+  margin-top: 10px;
   overflow: hidden; }
   .tags .tag {
     display: block;
     float: left;
-    padding: 8px 16px;
+    padding: 2px 4px;
     margin: 2.5px;
-    border-radius: 3px;
     color: black;
-    border: 2px solid;
-    border-color: rgba(0, 0, 0, 0.2); }
+    border-radius: 3px;
+    background-color: rgba(0, 0, 0, 0.2);
+    font-size: 12px; }

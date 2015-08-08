@@ -44,7 +44,8 @@ app.controller('CardCtrl', [
 			// Get the current saturation level of the color
 			var currSaturation = $scope.fancyTime.color.saturation();
 			// Create a new color w/ a decreased level of saturation
-			var newColor = $scope.fancyTime.color.saturation( currSaturation - 0.3 );
+			// var newColor = $scope.fancyTime.color.saturation( currSaturation - 0.3 );
+			var newColor = $scope.fancyTime.color;
 
 			// Convert the rgba array to a string -- and remove the alpha
 			// portion of the newly created sting.
@@ -54,7 +55,7 @@ app.controller('CardCtrl', [
 			// Get the new alpha opacity based on the weight of the tag
 			var newAlpha;
 			if( tag.weight === 'strong' ){
-				newAlpha = 1;
+				newAlpha = 0.8;
 			} else if( tag.weight === 'medium' ){
 				newAlpha = 0.5;
 			} else {

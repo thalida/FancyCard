@@ -14,12 +14,12 @@ app.service('skillsDict', [
 				label: 'CoffeeScript'
 			},
 			{
-				weight: 'medium',
+				weight: 'light',
 				type: 'builder',
 				label: 'Grunt'
 			},
 			{
-				weight: 'light',
+				weight: 'medium',
 				type: 'builder',
 				label: 'Gulp'
 			},

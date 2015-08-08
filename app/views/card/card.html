@@ -18,16 +18,21 @@
 				</span>
 			</div>
 
-			<div class="about">
+			<div class="details">
 				<span class="name">Thalida Noel</span>
 				<span class="title">Mobile Web Developer</span>
 				<span class="title">OkCupid</span>
 			</div>
 
+			<p class="bio">
+				I'm a young cisgender woman who is part of the LGBTQ community,
+				I like to pretend I'm a roboticist. In reality, I'm probably one of the best dancers you’ll see at 2am.
+			</p>
+
 			<div class="tags">
 				<span class="tag"
 					  ng-style="{
-					  	'border-color': '{{getTagColor(skill)}}'
+					  	'background-color': '{{getTagColor(skill)}}'
 					  }"
 					  ng-class="'weight-' + skill.weight"
 					  ng-repeat="(key, skill) in ::skills">

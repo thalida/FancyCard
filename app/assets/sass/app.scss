@@ -138,7 +138,7 @@ $animationSpeed: 4s;
 	}
 }
 
-.about {
+.details {
 	display: block;
 	position: relative;
 	width: 100%;
@@ -160,21 +160,27 @@ $animationSpeed: 4s;
 	}
 }
 
+.bio {
+	margin: 10px 0;
+	font-size: 14px;
+}
+
 .tags {
 	height: 50%;
-	margin-top: 20px;
+	margin-top: 10px;
 	overflow: hidden;
 
 	.tag {
 		display: block;
 		float: left;
-		padding: 8px 16px;
+		padding: 2px 4px;
 		margin: 2.5px;
 
-		border-radius: ($cardRadius/2);
-
 		color: black;
-		border: 2px solid;
-		border-color: rgba(black, 0.2);
+		border-radius: ($cardRadius/2);
+		background-color: rgba(black, 0.2);
+		// border: 1px solid;
+		// border-color: rgba(black, 0.2);
+		font-size: 12px;
 	}
 }
