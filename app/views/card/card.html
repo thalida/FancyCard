@@ -41,7 +41,7 @@
 			</div>
 		</div>
 		<div class="card-footer" ng-click="disableFlip($event)">
-			<a class="socialLink" ng-repeat="(key, site) in social" ng-click="navigateTo($event, site)">
+			<a class="socialLink clickable" ng-repeat="(key, site) in social" ng-click="navigateTo($event, site)">
 				<img ng-src="{{site.logo}}" />
 			</a>
 		</div>
