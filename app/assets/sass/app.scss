@@ -32,7 +32,7 @@ $animationSpeed: 4s;
 			@extend %pause-animation;
 		}
 
-		@media(min-height: 550px){
+		@media(min-height: 485px){
 			@include vertical-align;
 			margin: 0 auto;
 			-webkit-animation-name: breathing-valign;

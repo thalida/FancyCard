@@ -8,7 +8,8 @@ body {
   background-color: #EFEFEF;
   font: normal 300 16px/1.5 "Roboto Slab", serif;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale; }
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden; }
 
 .app {
   position: relative;
@@ -169,7 +170,7 @@ body {
   margin: 1% auto;
   -webkit-animation: breathing cubic-bezier(0.445, 0.05, 0.55, 0.95) 4s infinite;
   animation: breathing cubic-bezier(0.445, 0.05, 0.55, 0.95) 4s infinite; }
-  @media (min-height: 550px) {
+  @media (min-height: 485px) {
     .card-container {
       position: relative;
       top: 50%;
