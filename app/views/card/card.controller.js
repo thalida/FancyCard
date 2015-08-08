@@ -1,5 +1,12 @@
 'use strict';
 
+//==============================================================================
+//
+//	Card Controller
+// 		Creates the card element to be shown to the users when the hit the site
+// 		The controller takes of of the dynamically changing content used.
+//------------------------------------------------------------------------------
+
 app.config([
 	'$routeProvider',
 	function($routeProvider) {

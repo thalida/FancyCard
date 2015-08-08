@@ -1,5 +1,16 @@
 'use strict';
 
+//==============================================================================
+//
+//	Card Face Directive
+// 		Renders the face of a card element
+// 		Usage:
+// 			- Requires the card directive as it's parent
+// 			- Requires a face attribute either "front" or "back"
+// 		Example:
+// 			<card:face face="front"></card:face>
+//------------------------------------------------------------------------------
+
 app.directive('cardFace', [
 	'$interval',
 	'$sce',
@@ -12,19 +23,19 @@ app.directive('cardFace', [
 			templateUrl: 'components/card/templates/cardFace.html',
 			transclude: true,
 			scope: {
-				cardFace: '@type'
+				cardFace: '@face'
 			},
 			link: function($scope, $el, $attrs, cardCtrl) {
 				$scope.utils = Utils;
 
 				//	init
-				// 		Sets the card & runs the animation/update
+				// 		Setups the animation interval for the card and default
+				// 		attributes needed to display the card.
 				//--------------------------------------------------------------
 				var init = function(){
-					// Wait time between each card update
+					// Wait 2 minutes between each card update
 					var waitTime = 2 * 60 * 1000;
 
-					$scope.cardFace = $scope.cardFace || 'front';
 					$scope.cardClass = 'card-' + $scope.cardFace;
 
 					updateCard();
@@ -39,13 +50,8 @@ app.directive('cardFace', [
 					// Get the info for the current time (color, sayings, name, etc)
 					var currFancyTime = cardCtrl.getFancyTime();
 
-					// Pass the current fancy time to the parent controller
-					$scope.currFancyTime = currFancyTime;
-
-					// Update the contrast card color (either white/black)
+					// Get the contrast color: either white/black
 					$scope.cardColor = currFancyTime.color.contrastColor();
-
-					// Set the background to the hex color for this time
 					$el.css( 'background', currFancyTime.hexColor );
 				};
 

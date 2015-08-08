@@ -1,5 +1,17 @@
 'use strict';
 
+//==============================================================================
+//
+//	Card Directive
+// 		Renders the card element
+// 		Usage:
+// 			- In order to display content the body of each card must have two faces.
+//			- OPTIONALLY you can include a fancy-time attribute on the element
+// 			which will be updated each time the time used by the card changes.
+// 		Example:
+// 			<card fancy-fime="fancyTime"></card>
+//------------------------------------------------------------------------------
+
 app.directive('card', [
 	'$rootScope',
 	'$timeout',
