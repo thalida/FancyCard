@@ -35,9 +35,9 @@ Browse to the app at `http://localhost:8000/app/index.html`.
 
 ##### Deploy to Prod
 ```
-git checkout deploy
-git merge master
+git checkout deploy-angular
+git merge card-angular
 git push
-git push prod deploy:master
+git push prod
 ```
 Check that launch was successful at: `thalida.com`
