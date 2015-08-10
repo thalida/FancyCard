@@ -11,6 +11,9 @@ app.config(['$routeProvider', function($routeProvider) {
 }]);
 
 app.run([function(){
+	console.log('thalida.com - Angular Version');
+	console.log('https://github.com/thalida/thalida.com/tree/card-angular');
+
 	// method taken from https://gist.github.com/960189
 	// 180.5
 	// 160.5
