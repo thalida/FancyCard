@@ -1,13 +1,4 @@
 # thalida.com
-## Angular Version
-
-This is the angular/default version of my site.
-
-### Developed With:
-- Angular (of course)
-- SCSS
-- Gulp
-- Bower
 
 ## General Info
 
@@ -15,13 +6,15 @@ This is the angular/default version of my site.
 A simple card style website -- in the form of a standard business card. 
 The site will be developed in the current modern languages as they come and go.
 
-#### Currently Demos
-- AngularJS
+#### Current Demos
+- Angular-Bower-Gulp
 
 
 #### Future Additions
 - React
 - Vanialla JS
+- Angular2-ES6
+- Angular-Browserify
 
 
 ### Development
