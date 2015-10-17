@@ -62,7 +62,7 @@ app.run(['$templateCache', function($templateCache){
 require('./components');
 require('./views');
 
-},{"./components":14,"./views":21,"angular":27,"angular-route":23,"angular-sanitize":25,"jquery":29,"jquery-color/jquery.color":28,"moment":30,"ngstorage":31}],2:[function(require,module,exports){
+},{"./components":14,"./views":27,"angular":33,"angular-route":29,"angular-sanitize":31,"jquery":35,"jquery-color/jquery.color":34,"moment":36,"ngstorage":37}],2:[function(require,module,exports){
 'use strict';
 
 //==============================================================================
@@ -550,14 +550,72 @@ require('./global');
 require('./card');
 require('./fancyTime');
 require('./visits');
+require('./siteHeader');
+require('./siteFooter');
 
-},{"./card":4,"./fancyTime":9,"./global":10,"./visits":15}],15:[function(require,module,exports){
+},{"./card":4,"./fancyTime":9,"./global":10,"./siteFooter":15,"./siteHeader":18,"./visits":21}],15:[function(require,module,exports){
+'use strict';
+
+require('./siteFooter.directive');
+
+},{"./siteFooter.directive":16}],16:[function(require,module,exports){
+'use strict';
+
+app.directive('siteFooter', [
+	'$rootScope',
+	'$timeout',
+	'$sce',
+	'Utils',
+	function($rootScope, $timeout, $sce, Utils){
+		return {
+			restrict: 'E',
+			replace: true,
+			template: require('./siteFooter.html'),
+			transclude: false,
+			link: function($scope, $el) {
+
+			}
+		};
+	}
+]);
+
+},{"./siteFooter.html":17}],17:[function(require,module,exports){
+module.exports = '<div class="site-footer"></div>\n';
+},{}],18:[function(require,module,exports){
+'use strict';
+
+require('./siteHeader.directive');
+
+},{"./siteHeader.directive":19}],19:[function(require,module,exports){
+'use strict';
+
+app.directive('siteHeader', [
+	'$rootScope',
+	'$timeout',
+	'$sce',
+	'Utils',
+	function($rootScope, $timeout, $sce, Utils){
+		return {
+			restrict: 'E',
+			replace: true,
+			template: require('./siteHeader.html'),
+			transclude: false,
+			link: function($scope, $el) {
+
+			}
+		};
+	}
+]);
+
+},{"./siteHeader.html":20}],20:[function(require,module,exports){
+module.exports = '<div class="site-header"></div>\n';
+},{}],21:[function(require,module,exports){
 'use strict';
 
 require('./visits.dict');
 require('./visits.service');
 
-},{"./visits.dict":16,"./visits.service":17}],16:[function(require,module,exports){
+},{"./visits.dict":22,"./visits.service":23}],22:[function(require,module,exports){
 'use strict';
 
 app.service('visitsDict', [
@@ -600,7 +658,7 @@ app.service('visitsDict', [
 	}
 ]);
 
-},{}],17:[function(require,module,exports){
+},{}],23:[function(require,module,exports){
 'use strict';
 
 app.service('VisitsService', [
@@ -670,7 +728,7 @@ app.service('VisitsService', [
 	}
 ]);
 
-},{}],18:[function(require,module,exports){
+},{}],24:[function(require,module,exports){
 'use strict';
 
 //==============================================================================
@@ -804,19 +862,19 @@ app.controller('CardCtrl', [
 	}
 ]);
 
-},{"./card.view.html":19}],19:[function(require,module,exports){
+},{"./card.view.html":25}],25:[function(require,module,exports){
 module.exports = '<card fancy-time="fancyTime">\n	<card:face face="front">\n		<div class="card-content">\n			<div class="greeting"\n				 ng-bind-html="utils.sanitize(greetingText)">\n			</div>\n		</div>\n		<div class="card-footer"\n			 ng-bind-html="utils.sanitize(footerText)">\n		</div>\n	</card:face>\n\n	<card:face face="back">\n		<div class="card-content">\n			<div class="photo">\n				<span class="img"\n					  ng-style="{\'background-image\': \'url(\' + photo + \')\'}">\n				</span>\n			</div>\n\n			<div class="details">\n				<span class="name">Thalida Noel</span>\n				<span class="title">Mobile Web Developer</span>\n				<span class="title">OkCupid</span>\n			</div>\n\n			<p class="bio">\n				I\'m a young cisgender woman who is part of the LGBTQ community,\n				I like to pretend I\'m a roboticist. In reality, I\'m probably one of the best dancers you’ll see at 2am.\n			</p>\n\n			<div class="tags">\n				<span class="tag"\n					  ng-style="{\n					  	\'background-color\': \'{{getTagColor(skill)}}\'\n					  }"\n					  ng-class="\'weight-\' + skill.weight"\n					  ng-repeat="(key, skill) in ::skills">\n					  {{::skill.label}}\n				</span>\n			</div>\n		</div>\n		<div class="card-footer" ng-click="disableFlip($event)">\n			<a class="socialLink clickable" ng-repeat="(key, site) in social" ng-click="navigateTo($event, site)">\n				<img ng-src="{{site.logo}}" />\n			</a>\n		</div>\n	</card:face>\n</card>\n';
-},{}],20:[function(require,module,exports){
+},{}],26:[function(require,module,exports){
 'use strict';
 
 require('./card.controller');
 
-},{"./card.controller":18}],21:[function(require,module,exports){
+},{"./card.controller":24}],27:[function(require,module,exports){
 'use strict';
 
 require('./card');
 
-},{"./card":20}],22:[function(require,module,exports){
+},{"./card":26}],28:[function(require,module,exports){
 /**
  * @license AngularJS v1.4.7
  * (c) 2010-2015 Google, Inc. http://angularjs.org
@@ -1809,11 +1867,11 @@ function ngViewFillContentFactory($compile, $controller, $route) {
 
 })(window, window.angular);
 
-},{}],23:[function(require,module,exports){
+},{}],29:[function(require,module,exports){
 require('./angular-route');
 module.exports = 'ngRoute';
 
-},{"./angular-route":22}],24:[function(require,module,exports){
+},{"./angular-route":28}],30:[function(require,module,exports){
 /**
  * @license AngularJS v1.4.7
  * (c) 2010-2015 Google, Inc. http://angularjs.org
@@ -2498,11 +2556,11 @@ angular.module('ngSanitize').filter('linky', ['$sanitize', function($sanitize) {
 
 })(window, window.angular);
 
-},{}],25:[function(require,module,exports){
+},{}],31:[function(require,module,exports){
 require('./angular-sanitize');
 module.exports = 'ngSanitize';
 
-},{"./angular-sanitize":24}],26:[function(require,module,exports){
+},{"./angular-sanitize":30}],32:[function(require,module,exports){
 /**
  * @license AngularJS v1.4.7
  * (c) 2010-2015 Google, Inc. http://angularjs.org
@@ -31407,11 +31465,11 @@ $provide.value("$locale", {
 })(window, document);
 
 !window.angular.$$csp().noInlineStyle && window.angular.element(document.head).prepend('<style type="text/css">@charset "UTF-8";[ng\\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-hide-animate){display:none !important;}ng\\:form{display:block;}.ng-animate-shim{visibility:hidden;}.ng-anchor{position:absolute;}</style>');
-},{}],27:[function(require,module,exports){
+},{}],33:[function(require,module,exports){
 require('./angular');
 module.exports = angular;
 
-},{"./angular":26}],28:[function(require,module,exports){
+},{"./angular":32}],34:[function(require,module,exports){
 /*!
  * jQuery Color Animations v@VERSION
  * https://github.com/jquery/jquery-color
@@ -32076,7 +32134,7 @@ colors = jQuery.Color.names = {
 
 }( jQuery ));
 
-},{}],29:[function(require,module,exports){
+},{}],35:[function(require,module,exports){
 /*!
  * jQuery JavaScript Library v2.1.4
  * http://jquery.com/
@@ -41288,7 +41346,7 @@ return jQuery;
 
 }));
 
-},{}],30:[function(require,module,exports){
+},{}],36:[function(require,module,exports){
 //! moment.js
 //! version : 2.10.6
 //! authors : Tim Wood, Iskren Chernev, Moment.js contributors
@@ -44484,7 +44542,7 @@ return jQuery;
     return _moment;
 
 }));
-},{}],31:[function(require,module,exports){
+},{}],37:[function(require,module,exports){
 (function (root, factory) {
   'use strict';
 
@@ -44698,4 +44756,4 @@ return jQuery;
 
 }));
 
-},{"angular":27}]},{},[1]);
+},{"angular":33}]},{},[1]);

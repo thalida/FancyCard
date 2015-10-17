@@ -1,0 +1,181 @@
+.card {
+	&-container,
+	&-face {
+		height: 480px;
+		width: 320px;
+		border-radius: $cardRadius;
+	}
+
+	&-container {
+		@include top-align;
+		margin: 1% auto;
+		-webkit-animation: breathing $animationTiming $animationSpeed infinite;
+		animation: breathing $animationTiming $animationSpeed infinite;
+		&.stopAnimation {
+			@extend %pause-animation;
+		}
+
+		@media(min-height: 485px){
+			@include vertical-align;
+			margin: 0 auto;
+			-webkit-animation-name: breathing-valign;
+			animation-name: breathing-valign;
+		}
+	}
+
+	&-face {
+		-webkit-animation: breathing-shadow $animationTiming $animationSpeed infinite;
+		animation: breathing-shadow $animationTiming $animationSpeed infinite;
+		.card-container.stopAnimation & {
+			@extend %pause-animation;
+		}
+	}
+
+	&-front {
+		.card-footer {
+			background-repeat: no-repeat;
+			background-position: center right;
+		}
+
+		&.color-white .card-footer{
+			background-image: url(../assets/images/arrow-right-white.svg);
+			border-top: 1px solid rgba(white, 0.3);
+			color: rgba(white, 1);
+		}
+
+		&.color-black .card-footer {
+			background-image: url(../assets/images/arrow-right-black.svg);
+			border-top: 1px solid rgba(black, 0.2);
+			color: rgba(black, 0.8);
+		}
+	}
+
+	&-back {
+		padding-top: $photoSize;
+
+		.card-content,
+		.card-footer{
+			width: 100%;
+			background-color: rgba(#F9F9F9, 1);
+			padding: 0 $cardMargins;
+		}
+
+		.card-footer {
+			padding-top: 5%;
+			border-top: 1px solid rgba(black, 0.05);
+			border-bottom-left-radius: $cardRadius;
+			border-bottom-right-radius: $cardRadius;
+			color: rgba(black, 0.5);
+		}
+	}
+
+	&-content {
+		position: relative;
+		height: $cardContentH;
+		width: $cardWidth;
+		margin: 0 auto;
+	}
+
+	&-footer {
+		clear: both;
+		position: relative;
+		height: $cardFooterH;
+		width: $cardWidth;
+		margin: 0 auto;
+		padding: ($cardFooterH / 2) 0;
+		text-align: center;
+	}
+}
+
+.greeting {
+	@extend %vertical-align;
+	font-size: 35px;
+	font-weight: 300;
+	line-height: 1.2;
+	text-align: center;
+
+	.card-face.color-white & {
+		color: rgba(#fff, 1);
+	}
+
+	.card-face.color-black & {
+		color: rgba(#000, 0.8);
+	}
+}
+
+.photo {
+	position: absolute;
+	width: $cardWidth;
+	text-align: center;
+	margin: (-($photoSize/2)) 0 20px;
+
+	.img {
+		display: block;
+		width: $photoSize;
+		height: $photoSize;
+		position: relative;
+		margin: 0 auto;
+		border-radius: ($photoSize/4);
+
+		background-size: cover;
+		background-repeat: no-repeat;
+		background-position: center center;
+	}
+}
+
+.details {
+	display: block;
+	position: relative;
+	width: 100%;
+	text-align: center;
+	padding-top: (($photoSize / 2) + 10);
+
+	.name {
+		display: block;
+		position: relative;
+		font-size: 25px;
+		font-weight: 300;
+	}
+
+	.title {
+		display: block;
+		position: relative;
+		font-size: 16px;
+		font-weight: 100;
+	}
+}
+
+.bio {
+	margin: 10px 0;
+	font-size: 14px;
+}
+
+.tags {
+	height: 50%;
+	margin-top: 10px;
+	overflow: hidden;
+
+	.tag {
+		display: block;
+		float: left;
+		padding: 2px 4px;
+		margin: 2.5px;
+
+		color: black;
+		border-radius: ($cardRadius/2);
+		background-color: rgba(black, 0.2);
+		// border: 1px solid;
+		// border-color: rgba(black, 0.2);
+		font-size: 12px;
+	}
+}
+
+.socialLink {
+	margin: 0 10px;
+	text-decoration: none;
+	opacity: 0.3;
+
+	&:hover {
+		opacity: 0.5
+	}
+}
