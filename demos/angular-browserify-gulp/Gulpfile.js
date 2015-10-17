@@ -31,7 +31,8 @@ gulp.task('sass', function(){
 
 gulp.task('watch', function(){
 	gulp.watch('app/**/*.js', ['browserify']);
-	gulp.watch('app/app.scss', ['sass']);
+	gulp.watch('app/**/*.html', ['browserify']);
+	gulp.watch('app/**/*.scss', ['sass']);
 	gulp.watch('app/assets/**/*.{png,jpg,jpeg,gif,svg}', ['images']);
 });
 
