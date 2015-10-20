@@ -10,6 +10,7 @@ app.service('visitsDict', [
 					'Hi, I&rsquo;m Thalida',
 					'Hey, I&rsquo;m Thalida',
 					'I&rsquo;m Thalida',
+					'Welcome, I&rsquo;m Thalida'
 				]
 			},
 			{
@@ -18,7 +19,7 @@ app.service('visitsDict', [
 				sayings: [
 					'Welcome back!',
 					'Missed me?',
-					'How are you?',
+					'Back again?',
 					'Came back for seconds?'
 				]
 			},
@@ -27,7 +28,9 @@ app.service('visitsDict', [
 				minVisits: 3,
 				sayings: [
 					'Ah, a serial visitor...',
-					'How sweet, you&rsquo;re back!'
+					'How sweet, you&rsquo;re back!',
+					'You know the drill by now',
+					'Nice to have you back!'
 				]
 			},
 		];

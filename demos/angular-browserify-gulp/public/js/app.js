@@ -93,6 +93,8 @@ app.directive('card', [
 				currFancyTime: '=?fancyTime'
 			},
 			controller: ['$scope','$element','$attrs', function ($scope, $element, $attrs){
+				$scope.isFrontShown = true;
+
 				//	@getFancyTime
 				// 		Gets + returns the current FancyTime
 				//--------------------------------------------------------------
@@ -100,11 +102,15 @@ app.directive('card', [
 					$scope.currFancyTime = FancyTime.get();
 					return $scope.currFancyTime;
 				};
+
+				this.isFaceShown = function( face ){
+					return ( $scope.isFrontShown && face === 'front' ) || ( !$scope.isFrontShown && face === 'back' );
+				};
 			}],
 			link: function($scope, $el) {
 				$scope.utils = Utils;
 
-				$scope.isFrontShown = true;
+				// $scope.isFrontShown = true;
 				$scope.runAnimation = true;
 				$scope.hasClicked = false;
 
@@ -135,6 +141,7 @@ app.directive('card', [
 				$timeout(function(){
 					if( $rootScope.totalVisits <= 1 && $scope.hasClicked === false ){
 						$scope.flipCard();
+						$scope.setAnimation( true );
 					}
 				}, 3 * 1000);
 			}
@@ -172,6 +179,11 @@ app.directive('cardFace', [
 			},
 			link: function($scope, $el, $attrs, cardCtrl) {
 				var $body = $('body');
+				// Wait 2 minutes between each card update
+				var waitTime = 2 * 60 * 1000;
+				// var waitTime = 5 * 1000;
+				var interval;
+
 				$scope.utils = Utils;
 
 				//	init
@@ -179,13 +191,16 @@ app.directive('cardFace', [
 				// 		attributes needed to display the card.
 				//--------------------------------------------------------------
 				var init = function(){
-					// Wait 2 minutes between each card update
-					var waitTime = 2 * 60 * 1000;
-
 					$scope.cardClass = 'card-' + $scope.cardFace;
+					setUpdateInterval();
+				};
 
+				var setUpdateInterval = function(){
+					if( typeof interval !== 'undefined' ){
+						$interval.cancel( interval );
+					}
 					updateCard();
-					$interval(updateCard, waitTime);
+					interval = $interval(updateCard, waitTime);
 				};
 
 				//	updateCard
@@ -193,6 +208,12 @@ app.directive('cardFace', [
 				// 		"fancy" time as well as the # of visits
 				//--------------------------------------------------------------
 				var updateCard = function(){
+					// var isShown = cardCtrl.isFaceShown( $scope.cardFace );
+
+					// if( !isShown ){
+					// 	return;
+					// }
+
 					// Get the info for the current time (color, sayings, name, etc)
 					var currFancyTime = cardCtrl.getFancyTime();
 					var secondaryColors = currFancyTime.color.secondaryColors();
@@ -206,6 +227,19 @@ app.directive('cardFace', [
 				};
 
 				init();
+
+				$scope.$watch(
+					function(){
+						return cardCtrl.isFaceShown( $scope.cardFace );
+					},
+					function( newState, oldState ){
+						if( newState === true && oldState === false ){
+							setUpdateInterval();
+						} else if( newState === false ){
+							$interval.cancel( interval );
+						}
+					}
+				);
 			}
 		};
 	}
@@ -234,7 +268,8 @@ app.service('fancyTimeDict', [
 				sayings: [
 					'Woah, Nightowl!',
 					'Up Late?',
-					'Can&rsquo;t sleep?'
+					'Can&rsquo;t sleep?',
+					'Burning the night oil?'
 				]
 			},
 			{
@@ -244,7 +279,9 @@ app.service('fancyTimeDict', [
 				// color: '#97FFDF',
 				sayings: [
 					'OMG, the elusive EarlyBird!',
-					'Hi, Early Riser!'
+					'Hi, Early Riser!',
+					'Good Dreams?',
+					'Have a great day!'
 				]
 			},
 			{
@@ -253,7 +290,9 @@ app.service('fancyTimeDict', [
 				color: '#56D8FF',
 				sayings: [
 					'Good Morning!',
-					'Good Dreams?'
+					'Good Dreams?',
+					'Have a wonderful day!',
+					'How&rsquo;d ya sleep?'
 				]
 			},
 			{
@@ -262,7 +301,9 @@ app.service('fancyTimeDict', [
 				color: '#FFD874',
 				sayings: [
 					'Good Afternoon!',
-					'Food o&lsquo;Clock'
+					'Food o&lsquo;Clock',
+					'Lunch time?',
+					'What&rsquo;s up!?'
 				]
 			},
 			{
@@ -272,7 +313,8 @@ app.service('fancyTimeDict', [
 				sayings: [
 					'Oh, Hi!',
 					'How are you?',
-					'Oh, Hey you!'
+					'Oh, Hey you!',
+					'How ya doing?'
 				]
 			},
 			{
@@ -281,7 +323,9 @@ app.service('fancyTimeDict', [
 				color: '#FF8774',
 				sayings: [
 					'Good Evening!',
-					'Good day?'
+					'Good day?',
+					'Dinner plans?',
+					'How&rsquo;s it going?'
 				]
 			},
 			{
@@ -290,7 +334,9 @@ app.service('fancyTimeDict', [
 				color: '#284BD7',
 				sayings: [
 					'Good Night!',
-					'Plans Tonight?'
+					'Plans Tonight?',
+					'Netfix &amp; Chinese?',
+					'Have a great night!'
 				]
 			}
 		];
@@ -628,6 +674,7 @@ app.service('visitsDict', [
 					'Hi, I&rsquo;m Thalida',
 					'Hey, I&rsquo;m Thalida',
 					'I&rsquo;m Thalida',
+					'Welcome, I&rsquo;m Thalida'
 				]
 			},
 			{
@@ -636,7 +683,7 @@ app.service('visitsDict', [
 				sayings: [
 					'Welcome back!',
 					'Missed me?',
-					'How are you?',
+					'Back again?',
 					'Came back for seconds?'
 				]
 			},
@@ -645,7 +692,9 @@ app.service('visitsDict', [
 				minVisits: 3,
 				sayings: [
 					'Ah, a serial visitor...',
-					'How sweet, you&rsquo;re back!'
+					'How sweet, you&rsquo;re back!',
+					'You know the drill by now',
+					'Nice to have you back!'
 				]
 			},
 		];
@@ -795,24 +844,38 @@ app.controller('CardCtrl', [
 			// Get the new alpha opacity based on the weight of the tag
 			var newAlpha;
 			if( tag.weight === 'strong' ){
-				newAlpha = 0.8;
+				newAlpha = 1;
 			} else if( tag.weight === 'medium' ){
-				newAlpha = 0.5;
+				newAlpha = 0.7;
 			} else {
-				newAlpha = 0.2;
+				newAlpha = 0.5;
 			}
 
 			// Return the base rgb color + new alpha
 			return 'rgba(' +  rgb + newAlpha + ')';
 		};
 
+		$scope.updateGreetingText = function(){
+			var sayings = angular.copy( $scope.fancyTime.closestPeriod.sayings );
+			var currGreetingText = angular.copy( $scope.greetingText );
+
+			if( typeof currGreetingText !== 'undefined' && currGreetingText.length > 0 ){
+				var currGreetingIdx = sayings.indexOf( currGreetingText );
+				sayings.splice( currGreetingIdx, 1 );
+			}
+
+			// Update the greeting text w/ a random saying
+			var newGreetingText = $scope.utils.getRandom(sayings);
+
+			return newGreetingText;
+		};
+
 		//	@updateText
 		// 		Display a randomly selected saying based on the current time
 		// 		as well as how many times the user has visited the site.
 		//----------------------------------------------------------------------
-		$scope.updateText = function(){
-			// Update the greeting text w/ a random saying
-			$scope.greetingText = $scope.utils.getRandom($scope.fancyTime.closestPeriod.sayings);
+		$scope.updateText = function( ){
+			$scope.greetingText = $scope.updateGreetingText();
 
 			// Update the footer text w/ a ranom saing based on # of visits
 			$scope.footerText = $scope.utils.getRandom(Visits.getGroup().sayings);
@@ -853,7 +916,7 @@ app.controller('CardCtrl', [
 
 		// Anytime the fancyTime changes/updates
 		// Update the text + photo shown on the site
-		$scope.$watch('fancyTime', function(fancyTime){
+		$scope.$watchCollection('fancyTime', function(fancyTime, oldFancyTime){
 			if( fancyTime !== null ){
 				$scope.updateText();
 				$scope.updatePhoto();
@@ -863,7 +926,7 @@ app.controller('CardCtrl', [
 ]);
 
 },{"./card.view.html":25}],25:[function(require,module,exports){
-module.exports = '<card fancy-time="fancyTime">\n	<card:face face="front">\n		<div class="card-content">\n			<div class="greeting"\n				 ng-bind-html="utils.sanitize(greetingText)">\n			</div>\n		</div>\n		<div class="card-footer"\n			 ng-bind-html="utils.sanitize(footerText)">\n		</div>\n	</card:face>\n\n	<card:face face="back">\n		<div class="card-content">\n			<div class="photo">\n				<span class="img"\n					  ng-style="{\'background-image\': \'url(\' + photo + \')\'}">\n				</span>\n			</div>\n\n			<div class="details">\n				<span class="name">Thalida Noel</span>\n				<span class="title">Mobile Web Developer</span>\n				<span class="title">OkCupid</span>\n			</div>\n\n			<p class="bio">\n				I\'m a young cisgender woman who is part of the LGBTQ community,\n				I like to pretend I\'m a roboticist. In reality, I\'m probably one of the best dancers you’ll see at 2am.\n			</p>\n\n			<div class="tags">\n				<span class="tag"\n					  ng-style="{\n					  	\'background-color\': \'{{getTagColor(skill)}}\'\n					  }"\n					  ng-class="\'weight-\' + skill.weight"\n					  ng-repeat="(key, skill) in ::skills">\n					  {{::skill.label}}\n				</span>\n			</div>\n		</div>\n		<div class="card-footer" ng-click="disableFlip($event)">\n			<a class="socialLink clickable" ng-repeat="(key, site) in social" ng-click="navigateTo($event, site)">\n				<img ng-src="{{site.logo}}" />\n			</a>\n		</div>\n	</card:face>\n</card>\n';
+module.exports = '<card fancy-time="fancyTime">\n	<card:face face="front">\n		<div class="card-content">\n			<div class="greeting"\n				 ng-bind-html="utils.sanitize(greetingText)">\n			</div>\n		</div>\n		<div class="card-footer"\n			 ng-bind-html="utils.sanitize(footerText)">\n		</div>\n	</card:face>\n\n	<card:face face="back">\n		<div class="card-content">\n			<div class="photo">\n				<span class="img"\n					  ng-style="{\'background-image\': \'url(\' + photo + \')\'}">\n				</span>\n			</div>\n\n			<div class="details">\n				<span class="name">Thalida Noel</span>\n				<span class="title">Mobile Web Developer</span>\n				<span class="title">OkCupid</span>\n			</div>\n\n			<p class="bio">\n				I\'m a young cisgender woman who is part of the LGBTQ community,\n				I like to pretend I\'m a roboticist. In reality, I\'m probably one of the best dancers you’ll see at 2am.\n			</p>\n\n			<div class="tags">\n				<span class="tag"\n					  ng-style="{\n					  	\'background-color\': \'{{getTagColor(skill)}}\'\n					  }"\n					  ng-class="\'weight-\' + skill.weight"\n					  ng-repeat="(key, skill) in skills">\n					  {{::skill.label}}\n				</span>\n			</div>\n		</div>\n		<div class="card-footer" ng-click="disableFlip($event)">\n			<a class="socialLink clickable" ng-repeat="(key, site) in social" ng-click="navigateTo($event, site)">\n				<img ng-src="{{site.logo}}" />\n			</a>\n		</div>\n	</card:face>\n</card>\n';
 },{}],26:[function(require,module,exports){
 'use strict';
 

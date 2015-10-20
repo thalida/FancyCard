@@ -27,6 +27,11 @@ app.directive('cardFace', [
 			},
 			link: function($scope, $el, $attrs, cardCtrl) {
 				var $body = $('body');
+				// Wait 2 minutes between each card update
+				var waitTime = 2 * 60 * 1000;
+				// var waitTime = 5 * 1000;
+				var interval;
+
 				$scope.utils = Utils;
 
 				//	init
@@ -34,13 +39,16 @@ app.directive('cardFace', [
 				// 		attributes needed to display the card.
 				//--------------------------------------------------------------
 				var init = function(){
-					// Wait 2 minutes between each card update
-					var waitTime = 2 * 60 * 1000;
-
 					$scope.cardClass = 'card-' + $scope.cardFace;
+					setUpdateInterval();
+				};
 
+				var setUpdateInterval = function(){
+					if( typeof interval !== 'undefined' ){
+						$interval.cancel( interval );
+					}
 					updateCard();
-					$interval(updateCard, waitTime);
+					interval = $interval(updateCard, waitTime);
 				};
 
 				//	updateCard
@@ -48,6 +56,12 @@ app.directive('cardFace', [
 				// 		"fancy" time as well as the # of visits
 				//--------------------------------------------------------------
 				var updateCard = function(){
+					// var isShown = cardCtrl.isFaceShown( $scope.cardFace );
+
+					// if( !isShown ){
+					// 	return;
+					// }
+
 					// Get the info for the current time (color, sayings, name, etc)
 					var currFancyTime = cardCtrl.getFancyTime();
 					var secondaryColors = currFancyTime.color.secondaryColors();
@@ -61,6 +75,19 @@ app.directive('cardFace', [
 				};
 
 				init();
+
+				$scope.$watch(
+					function(){
+						return cardCtrl.isFaceShown( $scope.cardFace );
+					},
+					function( newState, oldState ){
+						if( newState === true && oldState === false ){
+							setUpdateInterval();
+						} else if( newState === false ){
+							$interval.cancel( interval );
+						}
+					}
+				);
 			}
 		};
 	}

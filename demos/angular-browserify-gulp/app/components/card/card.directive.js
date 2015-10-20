@@ -28,6 +28,8 @@ app.directive('card', [
 				currFancyTime: '=?fancyTime'
 			},
 			controller: ['$scope','$element','$attrs', function ($scope, $element, $attrs){
+				$scope.isFrontShown = true;
+
 				//	@getFancyTime
 				// 		Gets + returns the current FancyTime
 				//--------------------------------------------------------------
@@ -35,11 +37,15 @@ app.directive('card', [
 					$scope.currFancyTime = FancyTime.get();
 					return $scope.currFancyTime;
 				};
+
+				this.isFaceShown = function( face ){
+					return ( $scope.isFrontShown && face === 'front' ) || ( !$scope.isFrontShown && face === 'back' );
+				};
 			}],
 			link: function($scope, $el) {
 				$scope.utils = Utils;
 
-				$scope.isFrontShown = true;
+				// $scope.isFrontShown = true;
 				$scope.runAnimation = true;
 				$scope.hasClicked = false;
 
@@ -70,6 +76,7 @@ app.directive('card', [
 				$timeout(function(){
 					if( $rootScope.totalVisits <= 1 && $scope.hasClicked === false ){
 						$scope.flipCard();
+						$scope.setAnimation( true );
 					}
 				}, 3 * 1000);
 			}

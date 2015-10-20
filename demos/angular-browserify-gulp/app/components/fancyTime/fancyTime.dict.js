@@ -10,7 +10,8 @@ app.service('fancyTimeDict', [
 				sayings: [
 					'Woah, Nightowl!',
 					'Up Late?',
-					'Can&rsquo;t sleep?'
+					'Can&rsquo;t sleep?',
+					'Burning the night oil?'
 				]
 			},
 			{
@@ -20,7 +21,9 @@ app.service('fancyTimeDict', [
 				// color: '#97FFDF',
 				sayings: [
 					'OMG, the elusive EarlyBird!',
-					'Hi, Early Riser!'
+					'Hi, Early Riser!',
+					'Good Dreams?',
+					'Have a great day!'
 				]
 			},
 			{
@@ -29,7 +32,9 @@ app.service('fancyTimeDict', [
 				color: '#56D8FF',
 				sayings: [
 					'Good Morning!',
-					'Good Dreams?'
+					'Good Dreams?',
+					'Have a wonderful day!',
+					'How&rsquo;d ya sleep?'
 				]
 			},
 			{
@@ -38,7 +43,9 @@ app.service('fancyTimeDict', [
 				color: '#FFD874',
 				sayings: [
 					'Good Afternoon!',
-					'Food o&lsquo;Clock'
+					'Food o&lsquo;Clock',
+					'Lunch time?',
+					'What&rsquo;s up!?'
 				]
 			},
 			{
@@ -48,7 +55,8 @@ app.service('fancyTimeDict', [
 				sayings: [
 					'Oh, Hi!',
 					'How are you?',
-					'Oh, Hey you!'
+					'Oh, Hey you!',
+					'How ya doing?'
 				]
 			},
 			{
@@ -57,7 +65,9 @@ app.service('fancyTimeDict', [
 				color: '#FF8774',
 				sayings: [
 					'Good Evening!',
-					'Good day?'
+					'Good day?',
+					'Dinner plans?',
+					'How&rsquo;s it going?'
 				]
 			},
 			{
@@ -66,7 +76,9 @@ app.service('fancyTimeDict', [
 				color: '#284BD7',
 				sayings: [
 					'Good Night!',
-					'Plans Tonight?'
+					'Plans Tonight?',
+					'Netfix &amp; Chinese?',
+					'Have a great night!'
 				]
 			}
 		];

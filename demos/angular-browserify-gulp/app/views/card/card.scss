@@ -161,12 +161,17 @@
 		padding: 2px 4px;
 		margin: 2.5px;
 
-		color: black;
 		border-radius: ($cardRadius/2);
 		background-color: rgba(black, 0.2);
-		// border: 1px solid;
-		// border-color: rgba(black, 0.2);
 		font-size: 12px;
+
+		.card-face.color-white & {
+			color: white;
+		}
+
+		.card-face.color-black & {
+			color: black;
+		}
 	}
 }
 

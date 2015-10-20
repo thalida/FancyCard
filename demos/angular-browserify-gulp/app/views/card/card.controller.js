@@ -64,24 +64,38 @@ app.controller('CardCtrl', [
 			// Get the new alpha opacity based on the weight of the tag
 			var newAlpha;
 			if( tag.weight === 'strong' ){
-				newAlpha = 0.8;
+				newAlpha = 1;
 			} else if( tag.weight === 'medium' ){
-				newAlpha = 0.5;
+				newAlpha = 0.7;
 			} else {
-				newAlpha = 0.2;
+				newAlpha = 0.5;
 			}
 
 			// Return the base rgb color + new alpha
 			return 'rgba(' +  rgb + newAlpha + ')';
 		};
 
+		$scope.updateGreetingText = function(){
+			var sayings = angular.copy( $scope.fancyTime.closestPeriod.sayings );
+			var currGreetingText = angular.copy( $scope.greetingText );
+
+			if( typeof currGreetingText !== 'undefined' && currGreetingText.length > 0 ){
+				var currGreetingIdx = sayings.indexOf( currGreetingText );
+				sayings.splice( currGreetingIdx, 1 );
+			}
+
+			// Update the greeting text w/ a random saying
+			var newGreetingText = $scope.utils.getRandom(sayings);
+
+			return newGreetingText;
+		};
+
 		//	@updateText
 		// 		Display a randomly selected saying based on the current time
 		// 		as well as how many times the user has visited the site.
 		//----------------------------------------------------------------------
-		$scope.updateText = function(){
-			// Update the greeting text w/ a random saying
-			$scope.greetingText = $scope.utils.getRandom($scope.fancyTime.closestPeriod.sayings);
+		$scope.updateText = function( ){
+			$scope.greetingText = $scope.updateGreetingText();
 
 			// Update the footer text w/ a ranom saing based on # of visits
 			$scope.footerText = $scope.utils.getRandom(Visits.getGroup().sayings);
@@ -122,7 +136,7 @@ app.controller('CardCtrl', [
 
 		// Anytime the fancyTime changes/updates
 		// Update the text + photo shown on the site
-		$scope.$watch('fancyTime', function(fancyTime){
+		$scope.$watchCollection('fancyTime', function(fancyTime, oldFancyTime){
 			if( fancyTime !== null ){
 				$scope.updateText();
 				$scope.updatePhoto();

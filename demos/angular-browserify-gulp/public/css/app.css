@@ -274,10 +274,13 @@ body {
     float: left;
     padding: 2px 4px;
     margin: 2.5px;
-    color: black;
     border-radius: 3px;
     background-color: rgba(0, 0, 0, 0.2);
     font-size: 12px; }
+    .card-face.color-white .tags .tag {
+      color: white; }
+    .card-face.color-black .tags .tag {
+      color: black; }
 
 .socialLink {
   margin: 0 10px;
