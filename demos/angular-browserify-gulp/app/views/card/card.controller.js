@@ -26,10 +26,11 @@ app.controller('CardCtrl', [
 	'skillsDict',
 	'socialDict',
 	function($rootScope, $scope, $timeout, Utils, Visits, skillsDict, socialDict) {
+		var fancyTime = null;
+
 		$rootScope.totalVisits = Visits.increment();
 
 		$scope.utils = Utils;
-		$scope.fancyTime = null;
 		$scope.skills = skillsDict.get();
 		$scope.social = socialDict.get();
 
@@ -51,12 +52,12 @@ app.controller('CardCtrl', [
 		// 		of the tag
 		//----------------------------------------------------------------------
 		$scope.getTagColor = function( tag ){
-			if( $scope.fancyTime === null ){
+			if( fancyTime === null ){
 				return '';
 			}
 
 			// Convert the rgba array to a string and remove the alpha value
-			var rgba = $scope.fancyTime.color.rgba().join(', ');
+			var rgba = fancyTime.color.rgba().join(', ');
 			var rgb = rgba.substring(0, rgba.length - 1);
 
 			// Get the new alpha opacity based on the weight of the tag
@@ -73,8 +74,8 @@ app.controller('CardCtrl', [
 			return 'rgba(' +  rgb + newAlpha + ')';
 		};
 
-		$scope.updateGreetingText = function(){
-			var sayings = angular.copy( $scope.fancyTime.closestPeriod.sayings );
+		var updateGreetingText = function(){
+			var sayings = angular.copy( fancyTime.closestPeriod.sayings );
 			var currGreetingText = angular.copy( $scope.greetingText );
 
 			if( typeof currGreetingText !== 'undefined' && currGreetingText.length > 0 ){
@@ -92,8 +93,8 @@ app.controller('CardCtrl', [
 		// 		Display a randomly selected saying based on the current time
 		// 		as well as how many times the user has visited the site.
 		//----------------------------------------------------------------------
-		$scope.updateText = function( ){
-			$scope.greetingText = $scope.updateGreetingText();
+		var updateText = function( ){
+			$scope.greetingText = updateGreetingText();
 
 			// Update the footer text w/ a ranom saing based on # of visits
 			$scope.footerText = $scope.utils.getRandom(Visits.getGroup().sayings);
@@ -103,9 +104,9 @@ app.controller('CardCtrl', [
 		//	@updatePhoto
 		// 		Display a photo of myself based on the current time
 		//----------------------------------------------------------------------
-		$scope.updatePhoto = function(){
+		var updatePhoto = function(){
 			// The key name of the nearest time period
-			var timeName = $scope.fancyTime.closestPeriod.name;
+			var timeName = fancyTime.closestPeriod.name;
 			var photoOptions = [
 				'assets/images/me_door.jpg',
 				'assets/images/me_yellow.jpg',
@@ -132,13 +133,15 @@ app.controller('CardCtrl', [
 			$scope.photo = photo;
 		};
 
-		// Anytime the fancyTime changes/updates
-		// Update the text + photo shown on the site
-		$scope.$watchCollection('fancyTime', function(fancyTime, oldFancyTime){
-			if( fancyTime !== null ){
-				$scope.updateText();
-				$scope.updatePhoto();
+
+		$scope.onFaceUpdate = function( face, newFancyTime ){
+			fancyTime = newFancyTime;
+
+			if( face === 'front' ){
+				updateText();
+			} else if ( face === 'back' ){
+				updatePhoto();
 			}
-		});
+		};
 	}
 ]);

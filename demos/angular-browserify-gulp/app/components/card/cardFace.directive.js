@@ -23,7 +23,8 @@ app.directive('cardFace', [
 			template: require('./templates/cardFace.html'),
 			transclude: true,
 			scope: {
-				cardFace: '@face'
+				cardFace: '@face',
+				triggerUpdate: '&?onUpdate'
 			},
 			link: function($scope, $el, $attrs, cardCtrl) {
 				var $body = $('body');
@@ -66,6 +67,8 @@ app.directive('cardFace', [
 					// Get the contrast color: either white/black
 					$scope.cardColor = currFancyTime.color.contrastColor();
 					$el.css( 'background', currFancyTime.hexColor );
+
+					$scope.triggerUpdate({ res: currFancyTime });
 				};
 
 				init();

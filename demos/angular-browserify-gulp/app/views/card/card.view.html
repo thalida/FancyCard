@@ -1,5 +1,5 @@
-<card fancy-time="fancyTime">
-	<card:face face="front">
+<card>
+	<card:face face="front" on-update="onFaceUpdate('front', res)">
 		<div class="card-content">
 			<div class="greeting"
 				 ng-bind-html="utils.sanitize(greetingText)">
@@ -10,7 +10,7 @@
 		</div>
 	</card:face>
 
-	<card:face face="back">
+	<card:face face="back" on-update="onFaceUpdate('back', res)">
 		<div class="card-content">
 			<div class="photo">
 				<span class="img"
@@ -41,7 +41,7 @@
 			</div>
 		</div>
 		<div class="card-footer" ng-click="disableFlip($event)">
-			<a class="socialLink clickable" ng-repeat="(key, site) in social" ng-click="navigateTo($event, site)">
+			<a class="socialLink clickable" ng-repeat="(key, site) in ::social" ng-click="navigateTo($event, site)">
 				<img ng-src="{{site.logo}}" />
 			</a>
 		</div>
