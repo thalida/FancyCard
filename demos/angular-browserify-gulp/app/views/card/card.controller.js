@@ -46,34 +46,6 @@ app.controller('CardCtrl', [
 			window.location = site.url;
 		};
 
-		//	@getTagColor
-		// 		Display an opaque version of the current FancyTime color
-		// 		Where each alpha level represents the weight (skill strength)
-		// 		of the tag
-		//----------------------------------------------------------------------
-		$scope.getTagColor = function( tag ){
-			if( fancyTime === null ){
-				return '';
-			}
-
-			// Convert the rgba array to a string and remove the alpha value
-			var rgba = fancyTime.color.rgba().join(', ');
-			var rgb = rgba.substring(0, rgba.length - 1);
-
-			// Get the new alpha opacity based on the weight of the tag
-			var newAlpha;
-			if( tag.weight === 'strong' ){
-				newAlpha = 1;
-			} else if( tag.weight === 'medium' ){
-				newAlpha = 0.7;
-			} else {
-				newAlpha = 0.5;
-			}
-
-			// Return the base rgb color + new alpha
-			return 'rgba(' +  rgb + newAlpha + ')';
-		};
-
 		var updateGreetingText = function(){
 			var sayings = angular.copy( fancyTime.closestPeriod.sayings );
 			var currGreetingText = angular.copy( $scope.greetingText );
@@ -134,6 +106,40 @@ app.controller('CardCtrl', [
 		};
 
 
+		//	@getTagColor
+		// 		Display an opaque version of the current FancyTime color
+		// 		Where each alpha level represents the weight (skill strength)
+		// 		of the tag
+		//----------------------------------------------------------------------
+		var getTagColor = function( tag ){
+			if( fancyTime === null ){
+				return '';
+			}
+
+			// Convert the rgba array to a string and remove the alpha value
+			var rgba = fancyTime.color.rgba().join(', ');
+			var rgb = rgba.substring(0, rgba.length - 1);
+
+			// Get the new alpha opacity based on the weight of the tag
+			var newAlpha;
+			if( tag.weight === 'strong' ){
+				newAlpha = 1;
+			} else if( tag.weight === 'medium' ){
+				newAlpha = 0.7;
+			} else {
+				newAlpha = 0.5;
+			}
+
+			// Return the base rgb color + new alpha
+			return 'rgba(' +  rgb + newAlpha + ')';
+		};
+
+		var updateTags = function(){
+			$.each($scope.skills, function(i, skill){
+				skill.color = getTagColor(skill);
+			});
+		};
+
 		$scope.onFaceUpdate = function( face, newFancyTime ){
 			fancyTime = newFancyTime;
 
@@ -141,6 +147,7 @@ app.controller('CardCtrl', [
 				updateText();
 			} else if ( face === 'back' ){
 				updatePhoto();
+				updateTags();
 			}
 		};
 	}

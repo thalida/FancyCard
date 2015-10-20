@@ -32,11 +32,11 @@
 			<div class="tags">
 				<span class="tag"
 					  ng-style="{
-					  	'background-color': '{{getTagColor(skill)}}'
+					  	'background-color': '{{skill.color}}'
 					  }"
 					  ng-class="'weight-' + skill.weight"
 					  ng-repeat="(key, skill) in skills">
-					  {{::skill.label}}
+					  {{skill.label}}
 				</span>
 			</div>
 		</div>

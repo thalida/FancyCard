@@ -823,34 +823,6 @@ app.controller('CardCtrl', [
 			window.location = site.url;
 		};
 
-		//	@getTagColor
-		// 		Display an opaque version of the current FancyTime color
-		// 		Where each alpha level represents the weight (skill strength)
-		// 		of the tag
-		//----------------------------------------------------------------------
-		$scope.getTagColor = function( tag ){
-			if( fancyTime === null ){
-				return '';
-			}
-
-			// Convert the rgba array to a string and remove the alpha value
-			var rgba = fancyTime.color.rgba().join(', ');
-			var rgb = rgba.substring(0, rgba.length - 1);
-
-			// Get the new alpha opacity based on the weight of the tag
-			var newAlpha;
-			if( tag.weight === 'strong' ){
-				newAlpha = 1;
-			} else if( tag.weight === 'medium' ){
-				newAlpha = 0.7;
-			} else {
-				newAlpha = 0.5;
-			}
-
-			// Return the base rgb color + new alpha
-			return 'rgba(' +  rgb + newAlpha + ')';
-		};
-
 		var updateGreetingText = function(){
 			var sayings = angular.copy( fancyTime.closestPeriod.sayings );
 			var currGreetingText = angular.copy( $scope.greetingText );
@@ -911,6 +883,40 @@ app.controller('CardCtrl', [
 		};
 
 
+		//	@getTagColor
+		// 		Display an opaque version of the current FancyTime color
+		// 		Where each alpha level represents the weight (skill strength)
+		// 		of the tag
+		//----------------------------------------------------------------------
+		var getTagColor = function( tag ){
+			if( fancyTime === null ){
+				return '';
+			}
+
+			// Convert the rgba array to a string and remove the alpha value
+			var rgba = fancyTime.color.rgba().join(', ');
+			var rgb = rgba.substring(0, rgba.length - 1);
+
+			// Get the new alpha opacity based on the weight of the tag
+			var newAlpha;
+			if( tag.weight === 'strong' ){
+				newAlpha = 1;
+			} else if( tag.weight === 'medium' ){
+				newAlpha = 0.7;
+			} else {
+				newAlpha = 0.5;
+			}
+
+			// Return the base rgb color + new alpha
+			return 'rgba(' +  rgb + newAlpha + ')';
+		};
+
+		var updateTags = function(){
+			$.each($scope.skills, function(i, skill){
+				skill.color = getTagColor(skill);
+			});
+		};
+
 		$scope.onFaceUpdate = function( face, newFancyTime ){
 			fancyTime = newFancyTime;
 
@@ -918,13 +924,14 @@ app.controller('CardCtrl', [
 				updateText();
 			} else if ( face === 'back' ){
 				updatePhoto();
+				updateTags();
 			}
 		};
 	}
 ]);
 
 },{"./card.view.html":25}],25:[function(require,module,exports){
-module.exports = '<card>\n	<card:face face="front" on-update="onFaceUpdate(\'front\', res)">\n		<div class="card-content">\n			<div class="greeting"\n				 ng-bind-html="utils.sanitize(greetingText)">\n			</div>\n		</div>\n		<div class="card-footer"\n			 ng-bind-html="utils.sanitize(footerText)">\n		</div>\n	</card:face>\n\n	<card:face face="back" on-update="onFaceUpdate(\'back\', res)">\n		<div class="card-content">\n			<div class="photo">\n				<span class="img"\n					  ng-style="{\'background-image\': \'url(\' + photo + \')\'}">\n				</span>\n			</div>\n\n			<div class="details">\n				<span class="name">Thalida Noel</span>\n				<span class="title">Mobile Web Developer</span>\n				<span class="title">OkCupid</span>\n			</div>\n\n			<p class="bio">\n				I\'m a young cisgender woman who is part of the LGBTQ community,\n				I like to pretend I\'m a roboticist. In reality, I\'m probably one of the best dancers you’ll see at 2am.\n			</p>\n\n			<div class="tags">\n				<span class="tag"\n					  ng-style="{\n					  	\'background-color\': \'{{getTagColor(skill)}}\'\n					  }"\n					  ng-class="\'weight-\' + skill.weight"\n					  ng-repeat="(key, skill) in skills">\n					  {{::skill.label}}\n				</span>\n			</div>\n		</div>\n		<div class="card-footer" ng-click="disableFlip($event)">\n			<a class="socialLink clickable" ng-repeat="(key, site) in ::social" ng-click="navigateTo($event, site)">\n				<img ng-src="{{site.logo}}" />\n			</a>\n		</div>\n	</card:face>\n</card>\n';
+module.exports = '<card>\n	<card:face face="front" on-update="onFaceUpdate(\'front\', res)">\n		<div class="card-content">\n			<div class="greeting"\n				 ng-bind-html="utils.sanitize(greetingText)">\n			</div>\n		</div>\n		<div class="card-footer"\n			 ng-bind-html="utils.sanitize(footerText)">\n		</div>\n	</card:face>\n\n	<card:face face="back" on-update="onFaceUpdate(\'back\', res)">\n		<div class="card-content">\n			<div class="photo">\n				<span class="img"\n					  ng-style="{\'background-image\': \'url(\' + photo + \')\'}">\n				</span>\n			</div>\n\n			<div class="details">\n				<span class="name">Thalida Noel</span>\n				<span class="title">Mobile Web Developer</span>\n				<span class="title">OkCupid</span>\n			</div>\n\n			<p class="bio">\n				I\'m a young cisgender woman who is part of the LGBTQ community,\n				I like to pretend I\'m a roboticist. In reality, I\'m probably one of the best dancers you’ll see at 2am.\n			</p>\n\n			<div class="tags">\n				<span class="tag"\n					  ng-style="{\n					  	\'background-color\': \'{{skill.color}}\'\n					  }"\n					  ng-class="\'weight-\' + skill.weight"\n					  ng-repeat="(key, skill) in skills">\n					  {{skill.label}}\n				</span>\n			</div>\n		</div>\n		<div class="card-footer" ng-click="disableFlip($event)">\n			<a class="socialLink clickable" ng-repeat="(key, site) in ::social" ng-click="navigateTo($event, site)">\n				<img ng-src="{{site.logo}}" />\n			</a>\n		</div>\n	</card:face>\n</card>\n';
 },{}],26:[function(require,module,exports){
 'use strict';
 
