@@ -12,8 +12,17 @@ gulp.task('connect', function(){
 	})
 });
 
-gulp.task('browserify', function(){
+gulp.task('browserify', function( type ){
+	console.log( type )
 	return browserify('./app/app.js')
+		.bundle()
+		.pipe(source('app.js'))
+		.pipe(gulp.dest('public/js/'));
+});
+
+gulp.task('browserify-dist', function( type ){
+	console.log( type )
+	return browserify({ entries: ['./app/app.js', './app/analytics.js'] })
 		.bundle()
 		.pipe(source('app.js'))
 		.pipe(gulp.dest('public/js/'));
@@ -37,3 +46,4 @@ gulp.task('watch', function(){
 });
 
 gulp.task('default', ['browserify', 'sass', 'images', 'connect', 'watch']);
+gulp.task('deploy', ['browserify-dist', 'sass', 'images']);
