@@ -179,10 +179,10 @@ app.directive('cardFace', [
 			},
 			link: function($scope, $el, $attrs, cardCtrl) {
 				var $body = $('body');
+				var interval;
 				// Wait 2 minutes between each card update
 				var waitTime = 2 * 60 * 1000;
 				// var waitTime = 5 * 1000;
-				var interval;
 
 				$scope.utils = Utils;
 
@@ -208,12 +208,6 @@ app.directive('cardFace', [
 				// 		"fancy" time as well as the # of visits
 				//--------------------------------------------------------------
 				var updateCard = function(){
-					// var isShown = cardCtrl.isFaceShown( $scope.cardFace );
-
-					// if( !isShown ){
-					// 	return;
-					// }
-
 					// Get the info for the current time (color, sayings, name, etc)
 					var currFancyTime = cardCtrl.getFancyTime();
 					var secondaryColors = currFancyTime.color.secondaryColors();
@@ -814,13 +808,11 @@ app.controller('CardCtrl', [
 		$scope.social = socialDict.get();
 
 		$scope.disableFlip = function( e ){
-			console.log( e );
 			e.stopPropagation();
 			e.preventDefault();
 		};
 
 		$scope.navigateTo = function( e, site ){
-			console.log( e );
 			e.stopPropagation();
 			e.preventDefault();
 

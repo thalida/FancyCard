@@ -34,13 +34,11 @@ app.controller('CardCtrl', [
 		$scope.social = socialDict.get();
 
 		$scope.disableFlip = function( e ){
-			console.log( e );
 			e.stopPropagation();
 			e.preventDefault();
 		};
 
 		$scope.navigateTo = function( e, site ){
-			console.log( e );
 			e.stopPropagation();
 			e.preventDefault();
 
