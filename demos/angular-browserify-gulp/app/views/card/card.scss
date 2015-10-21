@@ -7,30 +7,28 @@
 	}
 
 	&-container {
-		// @include top-align;
-		// margin: 1% auto;
-		// -webkit-animation: breathing $animationTiming $animationSpeed infinite;
-		// animation: breathing $animationTiming $animationSpeed infinite;
 		@include vertical-align;
-		margin: 1% auto;
+		margin: 0 auto;
 		-webkit-animation: breathing-valign $animationTiming $animationSpeed infinite;
 		animation: breathing-valign $animationTiming $animationSpeed infinite;
+
 		&.stopAnimation {
 			@extend %pause-animation;
 		}
 
-		@media(max-height: 485px){
-			// top: 70%;
-		// 	@include vertical-align;
-		// 	margin: 0 auto;
-		// 	-webkit-animation-name: breathing-valign;
-		// 	animation-name: breathing-valign;
+		@media (max-height: 319px) {
+			margin: 50% auto 30px;
+		}
+
+		@media (min-height: 320px) and (max-height: 450px) {
+			margin: 20% auto 30px;
 		}
 	}
 
 	&-face {
 		-webkit-animation: breathing-shadow $animationTiming $animationSpeed infinite;
 		animation: breathing-shadow $animationTiming $animationSpeed infinite;
+
 		.card-container.stopAnimation & {
 			@extend %pause-animation;
 		}
