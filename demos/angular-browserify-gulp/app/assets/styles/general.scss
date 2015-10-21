@@ -5,11 +5,13 @@ body {
 	padding: 0;
 	margin: 0;
 
-	background-color: #EFEFEF;
+	background-color: white;
 	font: normal 300 16px/1.5 'Roboto Slab', serif;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 	overflow-x: hidden;
+	-webkit-transition: background-color linear 1s;
+	transition: background-color linear 1s;
 }
 
 .app {

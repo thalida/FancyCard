@@ -25,14 +25,15 @@ app.controller('CardCtrl', [
 	'VisitsService',
 	'skillsDict',
 	'socialDict',
-	function($rootScope, $scope, $timeout, Utils, Visits, skillsDict, socialDict) {
+	function($rootScope, $scope, $timeout, Utils, VisitsService, skillsDict, socialDict) {
 		var fancyTime = null;
 
-		$rootScope.totalVisits = Visits.increment();
+		VisitsService.increment();
 
 		$scope.utils = Utils;
 		$scope.skills = skillsDict.get();
 		$scope.social = socialDict.get();
+		$scope.greeting = {};
 
 		$scope.disableFlip = function( e ){
 			e.stopPropagation();
@@ -46,19 +47,19 @@ app.controller('CardCtrl', [
 			window.location = site.url;
 		};
 
-		var updateGreetingText = function(){
+		var updateGreeting = function(){
 			var sayings = angular.copy( fancyTime.closestPeriod.sayings );
-			var currGreetingText = angular.copy( $scope.greetingText );
+			var currGreeting = angular.copy( $scope.greeting );
+			var newGreeting = {};
 
-			if( typeof currGreetingText !== 'undefined' && currGreetingText.length > 0 ){
-				var currGreetingIdx = sayings.indexOf( currGreetingText );
-				sayings.splice( currGreetingIdx, 1 );
+			if( currGreeting.index !== 'undefined' ){
+				sayings.splice( currGreeting.index, 1 );
 			}
 
-			// Update the greeting text w/ a random saying
-			var newGreetingText = $scope.utils.getRandom(sayings);
+			newGreeting.text = $scope.utils.getRandom(sayings);
+			newGreeting.index = sayings.indexOf( newGreeting.text );
 
-			return newGreetingText;
+			return newGreeting;
 		};
 
 		//	@updateText
@@ -66,10 +67,10 @@ app.controller('CardCtrl', [
 		// 		as well as how many times the user has visited the site.
 		//----------------------------------------------------------------------
 		var updateText = function( ){
-			$scope.greetingText = updateGreetingText();
+			$scope.greeting = updateGreeting();
 
 			// Update the footer text w/ a ranom saing based on # of visits
-			$scope.footerText = $scope.utils.getRandom(Visits.getGroup().sayings);
+			$scope.footerText = $scope.utils.getRandom(VisitsService.getGroup().sayings);
 
 		};
 

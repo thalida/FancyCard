@@ -7,19 +7,24 @@
 	}
 
 	&-container {
-		@include top-align;
+		// @include top-align;
+		// margin: 1% auto;
+		// -webkit-animation: breathing $animationTiming $animationSpeed infinite;
+		// animation: breathing $animationTiming $animationSpeed infinite;
+		@include vertical-align;
 		margin: 1% auto;
-		-webkit-animation: breathing $animationTiming $animationSpeed infinite;
-		animation: breathing $animationTiming $animationSpeed infinite;
+		-webkit-animation: breathing-valign $animationTiming $animationSpeed infinite;
+		animation: breathing-valign $animationTiming $animationSpeed infinite;
 		&.stopAnimation {
 			@extend %pause-animation;
 		}
 
-		@media(min-height: 485px){
-			@include vertical-align;
-			margin: 0 auto;
-			-webkit-animation-name: breathing-valign;
-			animation-name: breathing-valign;
+		@media(max-height: 485px){
+			// top: 70%;
+		// 	@include vertical-align;
+		// 	margin: 0 auto;
+		// 	-webkit-animation-name: breathing-valign;
+		// 	animation-name: breathing-valign;
 		}
 	}
 
@@ -93,6 +98,12 @@
 	font-weight: 300;
 	line-height: 1.2;
 	text-align: center;
+	-webkit-transition: opacity linear 0.2s;
+	transition: opacity linear 0.2s;
+
+	&[class*="-add"] {
+		opacity: 0.1;
+	}
 
 	.card-face.color-white & {
 		color: rgba(#fff, 1);

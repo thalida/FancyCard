@@ -1,8 +1,8 @@
 'use strict';
 
 require('./global');
-require('./card');
-require('./fancyTime');
 require('./visits');
+require('./fancyTime');
+require('./card');
 require('./siteHeader');
 require('./siteFooter');

@@ -33,8 +33,11 @@ app.service('VisitsService', [
 		Visits.prototype.increment = function() {
 			var now = moment();
 			var lastVisit = moment(this.storage.lastVisit, 'x');
+			var isFirstVist = this.storage.visits === 1;
 
-			if( now.diff(lastVisit, 'minutes') > 10 ){
+			if( (isFirstVist && now.diff(lastVisit, 'seconds') > 5)
+				|| (!isFirstVist && now.diff(lastVisit, 'minutes') > 2)
+			){
 				this.storage.visits += 1;
 				this.storage.lastVisit = moment().format('x');
 			}
@@ -61,6 +64,14 @@ app.service('VisitsService', [
 			}
 
 			return foundGroup;
+		};
+
+		Visits.prototype.getTotal = function(){
+			return this.storage.visits;
+		};
+
+		Visits.prototype.getLastVisitTime = function(){
+			return this.storage.lastVisit;
 		};
 
 		return new Visits();

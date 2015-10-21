@@ -7,11 +7,13 @@ html {
 body {
   padding: 0;
   margin: 0;
-  background-color: #EFEFEF;
+  background-color: white;
   font: normal 300 16px/1.5 'Roboto Slab', serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  overflow-x: hidden; }
+  overflow-x: hidden;
+  -webkit-transition: background-color linear 1s;
+  transition: background-color linear 1s; }
 
 .app {
   position: relative;
@@ -154,29 +156,36 @@ body {
     .card-container.showBack .card-back {
       transform: rotateY(0deg); }
 
+.site-header {
+  width: 100%;
+  padding: 5px 20px;
+  text-align: right;
+  position: absolute; }
+  @media (max-height: 545px) {
+    .site-header {
+      position: relative; } }
+  .site-header a {
+    padding: 0 5px;
+    color: white;
+    font-size: 13px;
+    font-weight: 400;
+    text-decoration: none; }
+    .site-header a:hover {
+      color: rgba(255, 255, 255, 0.8); }
+
 .card-container, .card-face {
   height: 480px;
   width: 320px;
   border-radius: 6px; }
 .card-container {
   position: relative;
-  top: 0%;
-  -webkit-transform: translateY(0%);
-  -ms-transform: translateY(0%);
-  transform: translateY(0%);
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
   margin: 1% auto;
-  -webkit-animation: breathing cubic-bezier(0.445, 0.05, 0.55, 0.95) 4s infinite;
-  animation: breathing cubic-bezier(0.445, 0.05, 0.55, 0.95) 4s infinite; }
-  @media (min-height: 485px) {
-    .card-container {
-      position: relative;
-      top: 50%;
-      -webkit-transform: translateY(-50%);
-      -ms-transform: translateY(-50%);
-      transform: translateY(-50%);
-      margin: 0 auto;
-      -webkit-animation-name: breathing-valign;
-      animation-name: breathing-valign; } }
+  -webkit-animation: breathing-valign cubic-bezier(0.445, 0.05, 0.55, 0.95) 4s infinite;
+  animation: breathing-valign cubic-bezier(0.445, 0.05, 0.55, 0.95) 4s infinite; }
 .card-face {
   -webkit-animation: breathing-shadow cubic-bezier(0.445, 0.05, 0.55, 0.95) 4s infinite;
   animation: breathing-shadow cubic-bezier(0.445, 0.05, 0.55, 0.95) 4s infinite; }
@@ -222,7 +231,11 @@ body {
   font-size: 35px;
   font-weight: 300;
   line-height: 1.2;
-  text-align: center; }
+  text-align: center;
+  -webkit-transition: opacity linear 0.2s;
+  transition: opacity linear 0.2s; }
+  .greeting[class*="-add"] {
+    opacity: 0.1; }
   .card-face.color-white .greeting {
     color: white; }
   .card-face.color-black .greeting {

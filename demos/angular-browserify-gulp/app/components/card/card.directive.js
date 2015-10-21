@@ -17,8 +17,9 @@ app.directive('card', [
 	'$timeout',
 	'$sce',
 	'Utils',
+	'VisitsService',
 	'FancyTimeService',
-	function($rootScope, $timeout, $sce, Utils, FancyTime){
+	function($rootScope, $timeout, $sce, Utils, VisitsService, FancyTime){
 		return {
 			restrict: 'E',
 			replace: true,
@@ -74,7 +75,8 @@ app.directive('card', [
 				// 	have not clicked the card -- flip it for 'em
 				//--------------------------------------------------------------
 				$timeout(function(){
-					if( $rootScope.totalVisits <= 1 && $scope.hasClicked === false ){
+					var totalVisits = VisitsService.getTotal();
+					if( totalVisits <= 1 && $scope.hasClicked === false ){
 						$scope.flipCard();
 						$scope.setAnimation( true );
 					}

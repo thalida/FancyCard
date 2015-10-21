@@ -1,8 +1,8 @@
 <card>
 	<card:face face="front" on-update="onFaceUpdate('front', res)">
 		<div class="card-content">
-			<div class="greeting"
-				 ng-bind-html="utils.sanitize(greetingText)">
+			<div class="greeting greeting-{{greeting.index}}"
+				 ng-bind-html="utils.sanitize(greeting.text)">
 			</div>
 		</div>
 		<div class="card-footer"
@@ -41,7 +41,10 @@
 			</div>
 		</div>
 		<div class="card-footer" ng-click="disableFlip($event)">
-			<a class="socialLink clickable" ng-repeat="(key, site) in ::social" ng-click="navigateTo($event, site)">
+			<a  class="socialLink clickable"
+				ng-if="site.show"
+				ng-repeat="(key, site) in ::social"
+				ng-click="navigateTo($event, site)">
 				<img ng-src="{{site.logo}}" />
 			</a>
 		</div>

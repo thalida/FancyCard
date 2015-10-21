@@ -1,1 +1,22 @@
-.site-header {}
+.site-header {
+	width: 100%;
+	padding: 5px 20px;
+	text-align: right;
+	position: absolute;
+
+	@media(max-height: 545px){
+		position: relative;
+	}
+
+	a {
+		padding: 0 5px;
+		color: white;
+		font-size: 13px;
+		font-weight: 400;
+		text-decoration: none;
+
+		&:hover {
+			color: rgba(white, 0.8);
+		}
+	}
+}

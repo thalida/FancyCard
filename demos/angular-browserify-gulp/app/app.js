@@ -9,7 +9,8 @@ require('ngstorage');
 window.app = angular.module('myApp', [
 	'ngStorage',
 	require('angular-route'),
-	require('angular-sanitize')
+	require('angular-sanitize'),
+	require('angular-animate')
 ]);
 
 app.config(['$routeProvider', function($routeProvider) {
@@ -29,8 +30,8 @@ app.run(['$templateCache', function($templateCache){
 			current: this.hsla(),
 		};
 		var hues = {
-			left: hsla.current[0] - 30,
-			right: hsla.current[0] + 30
+			left: hsla.current[0] - 35,
+			right: hsla.current[0] + 35
 		};
 
 		hsla.left = angular.copy( hsla.current );
