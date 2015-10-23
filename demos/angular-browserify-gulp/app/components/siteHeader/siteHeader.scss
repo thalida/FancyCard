@@ -3,6 +3,7 @@
 	padding: 5px 20px;
 	text-align: right;
 	position: absolute;
+	z-index: 1;
 
 	@media(max-height: 545px){
 		position: relative;
