@@ -43,7 +43,7 @@ app.service('fancyTimeDict', [
 				color: '#FFD874',
 				sayings: [
 					'Good Afternoon!',
-					'Food o&lsquo;Clock',
+					'Food o\'Clock',
 					'Lunch time?',
 					'What&rsquo;s up!?'
 				]
