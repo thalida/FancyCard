@@ -48,6 +48,5 @@ gulp.task('watch', function(){
 gulp.task('default', ['browserify', 'sass', 'images', 'connect', 'watch']);
 gulp.task('deploy', ['browserify-dist', 'sass', 'images'], function(){
 	var rsyncConfig = config.rsync;
-	console.log( rsyncConfig )
 	return gulp.src(rsyncConfig.src).pipe(rsync(rsyncConfig.options))
 });
