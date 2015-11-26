@@ -2,8 +2,9 @@ var gulp = require('gulp');
 var sass = require('gulp-ruby-sass');
 var connect = require('gulp-connect');
 var browserify = require('browserify');
-// var ngHtml2Js = require('browserify-ng-html2js');
+var rsync = require('gulp-rsync');
 var source = require('vinyl-source-stream');
+var config = require('./buildConfig');
 
 gulp.task('connect', function(){
 	connect.server({
@@ -21,8 +22,7 @@ gulp.task('browserify', function( type ){
 });
 
 gulp.task('browserify-dist', function( type ){
-	console.log( type )
-	return browserify({ entries: ['./app/app.js', './app/analytics.js'] })
+	return browserify({ entries: ['./app/app.js'] })
 		.bundle()
 		.pipe(source('app.js'))
 		.pipe(gulp.dest('public/js/'));
@@ -46,4 +46,7 @@ gulp.task('watch', function(){
 });
 
 gulp.task('default', ['browserify', 'sass', 'images', 'connect', 'watch']);
-gulp.task('deploy', ['browserify-dist', 'sass', 'images']);
+gulp.task('deploy', ['browserify-dist', 'sass', 'images'], function(){
+	var rsyncConfig = config.rsync;
+	return gulp.src(rsyncConfig.src).pipe(rsync(rsyncConfig.options));
+});
